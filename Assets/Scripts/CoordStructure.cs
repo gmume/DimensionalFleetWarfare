@@ -9,7 +9,7 @@ public class CoordStructure : MonoBehaviour
     public int dimensionsNr = 1;
     public int dimensionSize = 10;
 
-    public List<int[][]> Dimensions()
+    public List<int[][]> CreateDimensions()
     {
         List<int[][]> dimensions = new();
 
@@ -25,6 +25,7 @@ public class CoordStructure : MonoBehaviour
                 dimensions[j][k] = new int[dimensionSize - 1];
             }
         }
+        Debug.Log("dimentsions: " + dimensions);
         return dimensions;
     }
 }
