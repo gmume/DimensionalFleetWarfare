@@ -333,7 +333,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1202182228
+--- !u!1 &823657531
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,36 +341,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1202182230}
-  - component: {fileID: 1202182229}
+  - component: {fileID: 823657533}
+  - component: {fileID: 823657532}
   m_Layer: 0
-  m_Name: TestCoords
+  m_Name: Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1202182229
+--- !u!114 &823657532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202182228}
+  m_GameObject: {fileID: 823657531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e709c117a3a5149a947609f89a3a84, type: 3}
+  m_Script: {fileID: 11500000, guid: 9840f19f561982146aad38d4f477521c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimensionsNr: 1
-  dimensionSize: 10
---- !u!4 &1202182230
+  dimensions1: {fileID: 11400000, guid: 4ee9eab384fea224394208c50e403aa6, type: 2}
+  fleet1: {fileID: 11400000, guid: 184666b16cbe4744ea3a317ae45992ac, type: 2}
+--- !u!4 &823657533
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202182228}
+  m_GameObject: {fileID: 823657531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fleet : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+[CreateAssetMenu(menuName = "Scripts/Fleet")]
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class Fleet : ScriptableObject
+{
+    public List<Ship> fleet = new();
 }
