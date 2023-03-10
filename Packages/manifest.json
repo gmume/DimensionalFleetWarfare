@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.3dconnexion.3dxunity3d": "file:D:/3DX/3DxWare/3DxUnity3D/src",
     "com.unity.ai.navigation": "1.1.1",
     "com.unity.collab-proxy": "2.0.0",
     "com.unity.ide.rider": "3.0.18",
