@@ -364,6 +364,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dimensions1: {fileID: 11400000, guid: 4ee9eab384fea224394208c50e403aa6, type: 2}
   fleet1: {fileID: 11400000, guid: 184666b16cbe4744ea3a317ae45992ac, type: 2}
+  dimensionsCount: 0
+  dimensionSize: 9
+  shipsCount: 3
 --- !u!4 &823657533
 Transform:
   m_ObjectHideFlags: 0
