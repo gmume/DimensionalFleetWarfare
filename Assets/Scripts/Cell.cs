@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scripts/Cell")]
-
-public class Cell : ScriptableObject
+public class Cell : MonoBehaviour
 {
     private int x;
     private int y;
     private bool activated = false;
     private bool occupied = false;
     private bool hitted = false;
+
+    public void InitCell(int xCoord, int yCoord)
+    {
+        SetX(xCoord);
+        SetY(yCoord);
+    }
 
     public void SetX(int xCoord)
     {

@@ -5,33 +5,30 @@ using UnityEngine;
 public class Dimension : MonoBehaviour
 {
     private int dimensionNr;
-    private Cell[][] cells;
-    private readonly ArrayList ships;
+    private GameObject[][] cells;
+    private readonly ArrayList ships = new();
 
-    public void InitDimension(int nr, int size, ArrayList fleet)
+    public void InitDimension(int nr, int size, GameObject cellPrefab, ArrayList fleet)
     {
-        Debug.Log("entred InitDimension()");
+        //Debug.Log("entred InitDimension()");
         dimensionNr = nr;
-        CreateCells(size);
+        CreateCells(size, cellPrefab);
         AddShips(fleet);
     }
 
-    public void CreateCells(int dimensionSize)
+    public void CreateCells(int dimensionSize, GameObject cellPrefab)
     {
-        cells = new Cell[dimensionSize][];
+        cells = new GameObject[dimensionSize][];
 
         for (int j = 0; j < dimensionSize; j++)
         {
-            cells[j] = new Cell[dimensionSize];
+            cells[j] = new GameObject[dimensionSize];
 
             for (int k = 0; k < dimensionSize; k++)
             {
-                Cell cell = ScriptableObject.CreateInstance("Cell") as Cell;
-                cell.SetX(j);
-                cell.SetY(k);
+                GameObject cell = Instantiate(cellPrefab, new Vector3(j, 0, k), Quaternion.identity);
+                cell.GetComponent<Cell>().InitCell(j, k);
                 cells[j][k] = cell;
-                //Debug.Log("cellX: " + cells[j][k].GetX());
-                //Debug.Log("cellY: " + cells[j][k].GetY());
             }
         }
     }
@@ -41,7 +38,7 @@ public class Dimension : MonoBehaviour
         return dimensionNr;
     }
 
-    public Cell GetCell(int x, int y)
+    public GameObject GetCell(int x, int y)
     {
         return cells[x][y];
     }
@@ -50,7 +47,7 @@ public class Dimension : MonoBehaviour
     {
         foreach(Ship ship in newShips)
         {
-            if(ship.getDimension() == dimensionNr)
+            if(ship.GetDimension() == dimensionNr)
             {
                 ships.Add(ship);
             }

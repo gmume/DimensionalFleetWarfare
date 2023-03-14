@@ -368,6 +368,8 @@ MonoBehaviour:
   fleetSize: 1
   dimensionPrefab: {fileID: 1073877234177249271, guid: a82406b8a9608a244b3401f2a199be15,
     type: 3}
+  cellPrefab: {fileID: 5484533334784721054, guid: 80ba35810794a0d4fa6c770d5065bef5,
+    type: 3}
 --- !u!4 &823657533
 Transform:
   m_ObjectHideFlags: 0
