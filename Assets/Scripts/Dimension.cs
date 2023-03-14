@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dimension : ScriptableObject
+public class Dimension : MonoBehaviour
 {
     private int dimensionNr;
     private Cell[][] cells;
-
     private readonly ArrayList ships;
 
     public void InitDimension(int nr, int size, ArrayList fleet)
     {
+        Debug.Log("entred InitDimension()");
         dimensionNr = nr;
         CreateCells(size);
         AddShips(fleet);
@@ -34,6 +34,11 @@ public class Dimension : ScriptableObject
                 //Debug.Log("cellY: " + cells[j][k].GetY());
             }
         }
+    }
+
+    public int GetDimensionNr()
+    {
+        return dimensionNr;
     }
 
     public Cell GetCell(int x, int y)
