@@ -9,7 +9,6 @@ public class Ship : ScriptableObject
     private string shipName;
     private int partsCount;
     private bool[] partDamaged;
-
     private int dimension;
     private int x;
     private int y;
@@ -61,7 +60,12 @@ public class Ship : ScriptableObject
             direction = Directions.North;
     }
 
-    public int getDimension()
+    public string GetName()
+    {
+        return shipName;
+    }
+
+    public int GetDimension()
     {
         return dimension;
     }

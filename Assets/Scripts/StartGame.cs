@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    public Dimensions dimensions1;
+    private Dimensions dimensions1;
     //public Dimensions dimensions2;
 
     [Range(1,5)]
@@ -15,12 +15,14 @@ public class StartGame : MonoBehaviour
     public int fleetSize;
 
     public GameObject dimensionPrefab;
+    public GameObject cellPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         dimensions1 = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
-        dimensions1.InitDimensions(dimensionsCount, dimensionSize, dimensionPrefab, fleetSize);
+        dimensions1.InitDimensions(dimensionsCount, dimensionSize, dimensionPrefab, cellPrefab, fleetSize);
+
     }
 
     // Update is called once per frame
