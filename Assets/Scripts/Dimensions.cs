@@ -42,7 +42,7 @@ public class Dimensions : ScriptableObject
     private Vector3 DimensionSize(int dimensionSize)
     {
         //new Vector3(dimensionSize+dimensionSize/4, 0.5f, dimensionSize + dimensionSize / 4);
-        Vector3 vector = new(dimensionSize / Mathf.Sqrt(2f), 0.5f, dimensionSize / Mathf.Sqrt(2f));
+        Vector3 vector = new(PerimeterRadius(dimensionSize), 0.5f, PerimeterRadius(dimensionSize));
         //Vector3 vector = new(dimensionSize * Mathf.Sqrt(2f), 0.5f, dimensionSize * Mathf.Sqrt(2f));
         return vector;
     }
