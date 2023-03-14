@@ -12,27 +12,22 @@ public class Dimensions : ScriptableObject
 
     public Fleet fleet;
 
-    public void InitDimensions(int countDimensions, int size, int fleetSize)
+    public void InitDimensions(int countDimensions, int size, GameObject prefab, int fleetSize)
     {
         dimensionsCount = countDimensions;
         dimensionSize = size;
-        CreateDimensions();
-        //Cell cell = dimensions1.GetCell(1, 1, 2);
-        //Debug.Log("Cell112: " + cell);
-        //Debug.Log("CellX: " + cell.GetX());
-        //Debug.Log("CellY: " + cell.GetY());
         InitFleet(fleetSize);
+        CreateDimensions(prefab);
     }
 
-    public void CreateDimensions()
+    public void CreateDimensions(GameObject prefab)
     {
         for (int i = 0; i < dimensionsCount; i++)
         {
-            Dimension dimension = ScriptableObject.CreateInstance("Dimension") as Dimension;
-            dimension.InitDimension(i, dimensionSize, fleet.GetFleet());
+            GameObject dimension = Instantiate(prefab, new Vector3(0, 0, i), Quaternion.identity);
+            dimension.GetComponent<Dimension>().InitDimension(i, dimensionSize, fleet.GetFleet());
             dimensions.Add(dimension);
         }
-        //Debug.Log("dimensions[0]: " + dimensions[0]);
     }
 
     public void InitFleet(int fleetSize)

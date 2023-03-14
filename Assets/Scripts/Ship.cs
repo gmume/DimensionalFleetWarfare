@@ -65,4 +65,9 @@ public class Ship : ScriptableObject
     {
         return dimension;
     }
+
+    public bool[] GetDamagedParts()
+    {
+        return partDamaged;
+    }
 }

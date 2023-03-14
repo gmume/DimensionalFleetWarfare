@@ -6,7 +6,6 @@ public class StartGame : MonoBehaviour
 {
     public Dimensions dimensions1;
     //public Dimensions dimensions2;
-    //public Fleet fleet1;
 
     [Range(1,5)]
     public int dimensionsCount;
@@ -15,11 +14,13 @@ public class StartGame : MonoBehaviour
     [Range(1, 5)]
     public int fleetSize;
 
+    public GameObject dimensionPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         dimensions1 = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
-        dimensions1.InitDimensions(dimensionsCount, dimensionSize, fleetSize);
+        dimensions1.InitDimensions(dimensionsCount, dimensionSize, dimensionPrefab, fleetSize);
     }
 
     // Update is called once per frame

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e709c117a3a5149a947609f89a3a84, type: 3}
   m_Name: Dimensions
   m_EditorClassIdentifier: 
-  dimensionsNr: 1
-  dimensionSize: 9
-  cell: {fileID: 11400000, guid: 998fd6d9551e74544ac96678c6242db6, type: 2}
+  dimensionPrefab: {fileID: 1073877234177249271, guid: a82406b8a9608a244b3401f2a199be15,
+    type: 3}
+  fleet: {fileID: 11400000, guid: 184666b16cbe4744ea3a317ae45992ac, type: 2}
