@@ -16,13 +16,13 @@ public class StartGame : MonoBehaviour
 
     public GameObject dimensionPrefab;
     public GameObject cellPrefab;
+    public GameObject shipPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         dimensions1 = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
-        dimensions1.InitDimensions(dimensionsCount, dimensionSize, dimensionPrefab, cellPrefab, fleetSize);
-
+        dimensions1.InitDimensions(dimensionsCount, dimensionSize, dimensionPrefab, cellPrefab, shipPrefab, fleetSize);
     }
 
     // Update is called once per frame
