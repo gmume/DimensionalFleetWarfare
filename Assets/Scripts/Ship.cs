@@ -9,20 +9,22 @@ public class Ship : MonoBehaviour
     private bool[] partDamaged;
     private int dimension;
     private int x;
-    private int y;
+    private int z;
     private Directions direction;
 
-    public void InitiateShip(int countParts)
+    public void InitiateShip(int shipNr)
     {
-        shipName = "ship" + (countParts + 2).ToString();
-        partsCount = countParts;
+        partsCount = shipNr + 2;
+        shipName = "ship" + partsCount.ToString();
+        partDamaged = new bool[partsCount];
 
-        for (int i = 0; i < partsCount; i++)
+        for (int i = 0; i < shipNr; i++)
         {
             partDamaged[i] = false;
         }
 
         dimension = 0;
+        SetX(shipNr);
         direction = Directions.North;
     }
 
@@ -36,14 +38,14 @@ public class Ship : MonoBehaviour
         return x;
     }
 
-    public void SetY(int newY)
+    public void SetZ(int newZ)
     {
-        y = newY;
+        z = newZ;
     }
 
-    public int GetY()
+    public int GetZ()
     {
-        return y;
+        return z;
     }
 
     public void QuaterTurn()

@@ -25,10 +25,10 @@ public class Dimension : MonoBehaviour
 
             for (int k = 0; k < dimensionSize; k++)
             {
-               // GameObject cell = Instantiate(cellPrefab, new Vector3(j, dimensionSize * dimensionNr, k), Quaternion.identity);
-                //cell.transform.parent = this.transform;
-                //cell.GetComponent<Cell>().InitCell(j, k);
-                //cells[j][k] = cell;
+                GameObject cell = Instantiate(cellPrefab, new Vector3(j, dimensionSize * dimensionNr, k), Quaternion.identity);
+                cell.transform.parent = this.transform;
+                cell.GetComponent<Cell>().InitCell(j, k);
+                cells[j][k] = cell;
             }
         }
     }
@@ -45,10 +45,11 @@ public class Dimension : MonoBehaviour
 
     public void AddShips(ArrayList newShips)
     {
-        foreach(Ship ship in newShips)
+        foreach(GameObject ship in newShips)
         {
-            if(ship.GetDimension() == dimensionNr)
+            if(ship.GetComponent<Ship>().GetDimension() == dimensionNr)
             {
+                ship.transform.parent = this.transform;
                 ships.Add(ship);
             }
         }

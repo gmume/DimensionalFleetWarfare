@@ -14,13 +14,15 @@ public class Fleet : ScriptableObject
         fleetSize = size;
     }
 
-    public void CreateFleet()
+    public void CreateFleet(GameObject shipPrefab)
     {
         for (int i = 0; i < fleetSize; i++)
         {
             //Ship ship = ScriptableObject.CreateInstance("Ship") as Ship;
+            GameObject ship = Instantiate(shipPrefab, new Vector3(i, 1, 0), Quaternion.identity);
             //ship.InitiateShip(i);
-            //fleet.Add(ship);
+            ship.GetComponent<Ship>().InitiateShip(i);
+            fleet.Add(ship);
         }
     }
 

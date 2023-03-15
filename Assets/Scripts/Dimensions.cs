@@ -12,11 +12,11 @@ public class Dimensions : ScriptableObject
 
     public Fleet fleet;
 
-    public void InitDimensions(int countDimensions, int size, GameObject prefabDimension, GameObject prefabCell, int fleetSize)
+    public void InitDimensions(int countDimensions, int size, GameObject prefabDimension, GameObject prefabCell, GameObject prefabShip, int fleetSize)
     {
         dimensionsCount = countDimensions;
         dimensionSize = size;
-        InitFleet(fleetSize);
+        InitFleet(fleetSize, prefabShip);
         CreateDimensions(prefabDimension, prefabCell);
     }
 
@@ -32,11 +32,11 @@ public class Dimensions : ScriptableObject
         }
     }
 
-    public void InitFleet(int fleetSize)
+    public void InitFleet(int fleetSize, GameObject prefabShip)
     {
         fleet = ScriptableObject.CreateInstance("Fleet") as Fleet;
         fleet.SetFleetSize(fleetSize);
-        fleet.CreateFleet();
+        fleet.CreateFleet(prefabShip);
     }
 
     private Vector3 DimensionSize(int dimensionSize)
