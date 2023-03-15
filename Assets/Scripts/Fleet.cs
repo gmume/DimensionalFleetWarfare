@@ -18,9 +18,9 @@ public class Fleet : ScriptableObject
     {
         for (int i = 0; i < fleetSize; i++)
         {
-            Ship ship = ScriptableObject.CreateInstance("Ship") as Ship;
-            ship.InitiateShip(i);
-            fleet.Add(ship);
+            //Ship ship = ScriptableObject.CreateInstance("Ship") as Ship;
+            //ship.InitiateShip(i);
+            //fleet.Add(ship);
         }
     }
 

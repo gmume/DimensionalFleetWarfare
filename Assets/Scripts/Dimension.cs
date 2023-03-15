@@ -10,7 +10,6 @@ public class Dimension : MonoBehaviour
 
     public void InitDimension(int nr, int size, GameObject cellPrefab, ArrayList fleet)
     {
-        //Debug.Log("entred InitDimension()");
         dimensionNr = nr;
         CreateCells(size, cellPrefab);
         AddShips(fleet);
@@ -26,9 +25,10 @@ public class Dimension : MonoBehaviour
 
             for (int k = 0; k < dimensionSize; k++)
             {
-                GameObject cell = Instantiate(cellPrefab, new Vector3(j, 0, k), Quaternion.identity);
-                cell.GetComponent<Cell>().InitCell(j, k);
-                cells[j][k] = cell;
+               // GameObject cell = Instantiate(cellPrefab, new Vector3(j, dimensionSize * dimensionNr, k), Quaternion.identity);
+                //cell.transform.parent = this.transform;
+                //cell.GetComponent<Cell>().InitCell(j, k);
+                //cells[j][k] = cell;
             }
         }
     }

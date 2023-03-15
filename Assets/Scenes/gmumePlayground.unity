@@ -362,10 +362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9840f19f561982146aad38d4f477521c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimensionsCount: 1
+  dimensionsCount: 2
   dimensionSize: 9
   fleetSize: 1
-  dimensionPrefab: {fileID: 4290834336529236424, guid: d393d4b0f6faea346bc868478d55f98c,
+  dimensionPrefab: {fileID: 7913147963555580739, guid: 1ebdb99b9101d6b4399b022aed71845b,
     type: 3}
   cellPrefab: {fileID: 4301652157982757216, guid: 54caee701344cc043ad02c218460ec10,
     type: 3}
