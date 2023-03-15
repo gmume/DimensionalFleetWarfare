@@ -22,12 +22,12 @@ public class Dimensions : ScriptableObject
 
     public void CreateDimensions(GameObject dimensionPrefab, GameObject cellPrefab)
     {
-        for (int i = 0; i < dimensionsCount; i++)
+        for (int dimensionNr = 0; dimensionNr < dimensionsCount; dimensionNr++)
         {
-            Debug.Log("wurzel 2: " + Mathf.Sqrt(2f));
-            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(0, i, 0), Quaternion.identity);
+            float halfDimensionSize = dimensionSize / 2;
+            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(halfDimensionSize, dimensionSize * dimensionNr, halfDimensionSize), Quaternion.identity);
             dimension.transform.localScale = DimensionSize(dimensionSize);
-            dimension.GetComponent<Dimension>().InitDimension(i, dimensionSize, cellPrefab, fleet.GetFleet());
+            dimension.GetComponent<Dimension>().InitDimension(dimensionNr, dimensionSize, cellPrefab, fleet.GetFleet());
             dimensions.Add(dimension);
         }
     }
@@ -41,14 +41,7 @@ public class Dimensions : ScriptableObject
 
     private Vector3 DimensionSize(int dimensionSize)
     {
-        //new Vector3(dimensionSize+dimensionSize/4, 0.5f, dimensionSize + dimensionSize / 4);
-        Vector3 vector = new(PerimeterRadius(dimensionSize), 0.5f, PerimeterRadius(dimensionSize));
-        //Vector3 vector = new(dimensionSize * Mathf.Sqrt(2f), 0.5f, dimensionSize * Mathf.Sqrt(2f));
-        return vector;
-    }
-
-    private float PerimeterRadius(int dimensionSize)
-    {
-        return dimensionSize / Mathf.Sqrt(2f);
+        float diagonal = dimensionSize * Mathf.Sqrt(2);
+        return new Vector3(diagonal, 0.9f, diagonal);
     }
 }

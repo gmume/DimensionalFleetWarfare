@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scripts/Ship")]
-
-public class Ship : ScriptableObject
+public class Ship : MonoBehaviour
 {
     private string shipName;
     private int partsCount;
