@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scripts/Fleet")]
+[CreateAssetMenu(menuName = "Scripts/GameSetup/Fleet")]
 
 public class Fleet : ScriptableObject
 {
@@ -18,9 +18,7 @@ public class Fleet : ScriptableObject
     {
         for (int i = 0; i < fleetSize; i++)
         {
-            //Ship ship = ScriptableObject.CreateInstance("Ship") as Ship;
             GameObject ship = Instantiate(shipPrefab, new Vector3(i, 1, 0), Quaternion.identity);
-            //ship.InitiateShip(i);
             ship.GetComponent<Ship>().InitiateShip(i);
             fleet.Add(ship);
         }

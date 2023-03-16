@@ -50,14 +50,27 @@ public class Ship : MonoBehaviour
 
     public void QuaterTurn()
     {
+        Quaternion quaterTurn = Quaternion.Euler(Vector3.forward * 90);
         if (direction == Directions.North)
+        {
+            this.transform.rotation = quaterTurn;
             direction = Directions.East;
+        }   
         else if (direction == Directions.South)
+        {
+            this.transform.rotation = quaterTurn;
             direction = Directions.West;
+        } 
         else if (direction == Directions.East)
+        {
+            this.transform.rotation = quaterTurn;
             direction = Directions.South;
+        }  
         else if (direction == Directions.West)
+        {
+            this.transform.rotation = quaterTurn;
             direction = Directions.North;
+        }  
     }
 
     public string GetName()
