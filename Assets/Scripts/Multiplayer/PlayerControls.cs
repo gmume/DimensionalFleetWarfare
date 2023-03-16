@@ -126,6 +126,7 @@ public class PlayerControls : MonoBehaviour
 
     public void OnDimensionUp()
     {
+
         Debug.Log("Dimension up!");
     }
 
@@ -151,6 +152,7 @@ public class PlayerControls : MonoBehaviour
 
     public void OnShipLeft()
     {
+
         Debug.Log("Ship left selected!");
     }
 

@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4789987dd56c8654b92fdd647889978a, type: 3}
-  m_Name: Player2
+  m_Name: Player Controls
   m_EditorClassIdentifier: 
+  input: {fileID: -944628639613478452, guid: 7a932b947924a284e99834f0f7fe936c, type: 3}
