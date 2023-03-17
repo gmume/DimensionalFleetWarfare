@@ -6,42 +6,31 @@ using UnityEngine;
 
 public class Dimensions : ScriptableObject
 {
-    private int dimensionsCount;
-    private int dimensionSize; //Should be uneven!
     private readonly ArrayList dimensions = new();
 
     public Fleet fleet;
 
-    public void InitDimensions(int countDimensions, int size, GameObject prefabDimension, GameObject prefabCell, GameObject prefabShip, int fleetSize)
+    public void InitDimensions(GameObject prefabDimension, GameObject prefabCell, GameObject prefabShip)
     {
-        dimensionsCount = countDimensions;
-        dimensionSize = size;
-        InitFleet(fleetSize, prefabShip);
+        InitFleet(prefabShip);
         CreateDimensions(prefabDimension, prefabCell);
     }
 
     public void CreateDimensions(GameObject dimensionPrefab, GameObject cellPrefab)
     {
-        for (int dimensionNr = 0; dimensionNr < dimensionsCount; dimensionNr++)
+        for (int dimensionNr = 0; dimensionNr < GameData.DimensionsCount; dimensionNr++)
         {
-            float halfDimensionSize = dimensionSize / 2;
-            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(halfDimensionSize, dimensionSize * dimensionNr, halfDimensionSize), Quaternion.identity);
-            dimension.transform.localScale = DimensionSize(dimensionSize);
-            dimension.GetComponent<Dimension>().InitDimension(dimensionNr, dimensionSize, cellPrefab, fleet.GetFleet());
+            float halfDimensionSize = GameData.DimensionSize / 2;
+            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(halfDimensionSize, GameData.DimensionSize * dimensionNr, halfDimensionSize), Quaternion.identity);
+            dimension.transform.localScale = new Vector3(GameData.DimensionDiagonal, 0.9f, GameData.DimensionDiagonal);
+            dimension.GetComponent<Dimension>().InitDimension(dimensionNr, cellPrefab, fleet.GetFleet());
             dimensions.Add(dimension);
         }
     }
 
-    public void InitFleet(int fleetSize, GameObject prefabShip)
+    public void InitFleet(GameObject prefabShip)
     {
         fleet = ScriptableObject.CreateInstance("Fleet") as Fleet;
-        fleet.SetFleetSize(fleetSize);
         fleet.CreateFleet(prefabShip);
-    }
-
-    private Vector3 DimensionSize(int dimensionSize)
-    {
-        float diagonal = dimensionSize * Mathf.Sqrt(2);
-        return new Vector3(diagonal, 0.9f, diagonal);
     }
 }

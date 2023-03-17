@@ -241,6 +241,24 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &598691110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2773943764266627686, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2127254075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &598691115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598691110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ad80bb6b4d91145989699483021120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1179417147
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,17 +461,17 @@ PrefabInstance:
     - target: {fileID: 8143962463802502187, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.87
       objectReference: {fileID: 0}
     - target: {fileID: 8143962463802502187, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 3.44
       objectReference: {fileID: 0}
     - target: {fileID: 8143962463802502187, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -11.04
       objectReference: {fileID: 0}
     - target: {fileID: 8143962463802502187, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
         type: 3}
@@ -493,7 +511,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2773943764266627686, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 598691115}
   m_SourcePrefab: {fileID: 100100000, guid: 8bd20fbeba0f03d4a9d111d74a14e5f1, type: 3}
 --- !u!1001 &6892565579893885555
 PrefabInstance:
@@ -503,6 +525,27 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
+        type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: bfc91897e3d3e234aaf53ce0dd6c3742,
+        type: 2}
+    - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
+        type: 3}
+      propertyPath: fleetSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
+        type: 3}
+      propertyPath: dimensionSize
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
+        type: 3}
+      propertyPath: dimensionsCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5057487984287084755, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
       propertyPath: m_RootOrder

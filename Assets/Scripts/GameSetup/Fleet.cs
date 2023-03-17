@@ -6,17 +6,11 @@ using UnityEngine;
 
 public class Fleet : ScriptableObject
 {
-    private int fleetSize;
     private readonly ArrayList fleet = new();
-
-    public void SetFleetSize(int size)
-    {
-        fleetSize = size;
-    }
 
     public void CreateFleet(GameObject shipPrefab)
     {
-        for (int i = 0; i < fleetSize; i++)
+        for (int i = 0; i < GameData.FleetSize; i++)
         {
             GameObject ship = Instantiate(shipPrefab, new Vector3(i, 1, 0), Quaternion.identity);
             ship.GetComponent<Ship>().InitiateShip(i);

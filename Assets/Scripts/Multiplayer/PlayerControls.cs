@@ -94,8 +94,8 @@ public class PlayerControls : MonoBehaviour
     {
         input.Disable();
 
-        submitAction.Disable();
-        cancelAction.Disable();
+        //submitAction.Disable();
+        //cancelAction.Disable();
         changeFocusAction.Disable();
         dimensionUpAction.Disable();
         dimensionDownAction.Disable();
@@ -111,68 +111,81 @@ public class PlayerControls : MonoBehaviour
 
     public void OnSubmit()
     {
+        //Based on context trigger event?
+        //submited ctx: ship selected, cell selected
         Debug.Log("Submited!");
     }
 
     public void OnCancel()
     {
+        //close ship menu
+        //
         Debug.Log("Canceled!");
     }
 
     public void OnChangeFocus()
     {
+        //Shift view on own dimensions to view on oponents dimensions
         Debug.Log("Changed focus!");
     }
 
     public void OnDimensionUp()
     {
-
+        //Shift view to upper dimension
         Debug.Log("Dimension up!");
     }
 
     public void OnDimensionDown()
     {
+        //Shift view to lower dimension
         Debug.Log("Dimension down!");
     }
 
     public void OnMoveSelection()
     {
+        //Change activeted cell
         Debug.Log("Selection moved!");
     }
 
     public void OnMoveCamera()
     {
+        //Move camera horizontaly around dimension
         Debug.Log("Camera moved!");
     }
 
     public void OnFleetMenu()
     {
+        //Open fleet menu
         Debug.Log("Fleet menu selected!");
     }
 
     public void OnShipLeft()
     {
-
+        //Shift to the left ship
         Debug.Log("Ship left selected!");
     }
 
     public void OnShipRight()
     {
+        //Shift to the right ship
         Debug.Log("Ship right selected!");
     }
 
     public void OnTurnLeft()
     {
+        //Turn ship left
         Debug.Log("Turned left!");
     }
 
     public void OnTurnRight()
     {
+        //Turn ship right
         Debug.Log("Turned right!");
     }
 
     public void OnFire()
     {
+        //Fire on selected cell
         Debug.Log("Fired!");
     }
 }

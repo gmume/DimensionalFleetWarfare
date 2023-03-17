@@ -4,83 +4,53 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    private string shipName;
-    private int partsCount;
+    public string ShipName { get; private set; }
+    public int PartsCount { get; private set; }
     private bool[] partDamaged;
-    private int dimension;
-    private int x;
-    private int z;
-    private Directions direction;
+    public int Dimension { get; private set; }
+    public int X { get; private set; }
+    public int Z { get; private set; }
+    public Directions Direction { get; set; }
 
-    public void InitiateShip(int shipNr)
+public void InitiateShip(int shipNr)
     {
-        partsCount = shipNr + 2;
-        shipName = "ship" + partsCount.ToString();
-        partDamaged = new bool[partsCount];
+        PartsCount = shipNr + 2;
+        ShipName = "ship" + PartsCount.ToString();
+        partDamaged = new bool[PartsCount];
 
         for (int i = 0; i < shipNr; i++)
         {
             partDamaged[i] = false;
         }
 
-        dimension = 0;
-        SetX(shipNr);
-        direction = Directions.North;
-    }
-
-    public void SetX(int newX)
-    {
-        x = newX;
-    }
-
-    public int GetX()
-    {
-        return x;
-    }
-
-    public void SetZ(int newZ)
-    {
-        z = newZ;
-    }
-
-    public int GetZ()
-    {
-        return z;
+        Dimension = 0;
+        X = shipNr;
+        Direction = Directions.North;
     }
 
     public void QuaterTurn()
     {
         Quaternion quaterTurn = Quaternion.Euler(Vector3.forward * 90);
-        if (direction == Directions.North)
+        if (Direction == Directions.North)
         {
             this.transform.rotation = quaterTurn;
-            direction = Directions.East;
+            Direction = Directions.East;
         }   
-        else if (direction == Directions.South)
+        else if (Direction == Directions.South)
         {
             this.transform.rotation = quaterTurn;
-            direction = Directions.West;
+            Direction = Directions.West;
         } 
-        else if (direction == Directions.East)
+        else if (Direction == Directions.East)
         {
             this.transform.rotation = quaterTurn;
-            direction = Directions.South;
+            Direction = Directions.South;
         }  
-        else if (direction == Directions.West)
+        else if (Direction == Directions.West)
         {
             this.transform.rotation = quaterTurn;
-            direction = Directions.North;
+            Direction = Directions.North;
         }  
-    }
-
-    public string GetName()
-    {
-        return shipName;
-    }
-
-    public int GetDimension()
-    {
-        return dimension;
     }
 
     public bool[] GetDamagedParts()

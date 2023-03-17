@@ -4,38 +4,37 @@ using UnityEngine;
 
 public class Dimension : MonoBehaviour
 {
-    private int dimensionNr;
+    public int DimensionNr { get; private set; }
     private GameObject[][] cells;
     private readonly ArrayList ships = new();
 
-    public void InitDimension(int nr, int size, GameObject cellPrefab, ArrayList fleet)
+    public void InitDimension(int nr, GameObject cellPrefab, ArrayList fleet)
     {
-        dimensionNr = nr;
-        CreateCells(size, cellPrefab);
+        DimensionNr = nr;
+        CreateCells(cellPrefab);
         AddShips(fleet);
     }
 
-    public void CreateCells(int dimensionSize, GameObject cellPrefab)
+    public void CreateCells(GameObject cellPrefab)
     {
-        cells = new GameObject[dimensionSize][];
+        cells = new GameObject[GameData.DimensionSize][];
 
-        for (int j = 0; j < dimensionSize; j++)
+        for (int j = 0; j < GameData.DimensionSize; j++)
         {
-            cells[j] = new GameObject[dimensionSize];
+            cells[j] = new GameObject[GameData.DimensionSize];
 
-            for (int k = 0; k < dimensionSize; k++)
+            for (int k = 0; k < GameData.DimensionSize; k++)
             {
-                GameObject cell = Instantiate(cellPrefab, new Vector3(j, dimensionSize * dimensionNr, k), Quaternion.identity);
+                GameObject cell = Instantiate(cellPrefab, new Vector3(j, GameData.DimensionSize * DimensionNr, k), Quaternion.identity);
                 cell.transform.parent = this.transform;
-                cell.GetComponent<Cell>().InitCell(j, k);
+                cell.GetComponent<Cell>().x = j;
+                cell.GetComponent<Cell>().y = k;
+                cell.GetComponent<Cell>().activated = false;
+                cell.GetComponent<Cell>().occupied = false;
+                cell.GetComponent<Cell>().hitted = false;
                 cells[j][k] = cell;
             }
         }
-    }
-
-    public int GetDimensionNr()
-    {
-        return dimensionNr;
     }
 
     public GameObject GetCell(int x, int y)
@@ -47,7 +46,7 @@ public class Dimension : MonoBehaviour
     {
         foreach(GameObject ship in newShips)
         {
-            if(ship.GetComponent<Ship>().GetDimension() == dimensionNr)
+            if(ship.GetComponent<Ship>().Dimension == DimensionNr)
             {
                 ship.transform.parent = this.transform;
                 ships.Add(ship);
