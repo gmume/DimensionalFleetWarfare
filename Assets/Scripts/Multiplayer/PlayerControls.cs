@@ -27,6 +27,8 @@ public class PlayerControls : MonoBehaviour
     private InputAction turnRightAction;
     private InputAction fireAction;
 
+    private GameObject cameraVehicle;
+
     public void Awake()
     {
         // find this action map, and keep the reference to it
@@ -63,12 +65,18 @@ public class PlayerControls : MonoBehaviour
         fireAction.performed          += ctx => { OnFire(); };
     }
 
+    private void Start()
+    {
+        cameraVehicle = GameObject.Find("CameraVehicle");
+    }
+
     void Update()
     {
         // our update loop polls this action value each frame
         //Vector2 moveVector = moveAction.ReadValue<Vector2>();
 
         //Objects, that need to be updated come here?
+        
     }
 
     public void OnEnable()
@@ -132,13 +140,14 @@ public class PlayerControls : MonoBehaviour
     public void OnDimensionUp()
     {
         //Shift view to upper dimension
-        Debug.Log("Dimension up!");
+        cameraVehicle.GetComponent<CameraBehavior>().CameraVehicleUp();
     }
 
     public void OnDimensionDown()
     {
+        Debug.Log("entred OnDimensionDown");
         //Shift view to lower dimension
-        Debug.Log("Dimension down!");
+        cameraVehicle.GetComponent<CameraBehavior>().CameraVehicleDown();
     }
 
     public void OnMoveSelection()

@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    private Vector2 vector;
+    private Vector3 vector;
 
-    public void SetupCamera()
+    public void Start()
     {
-
+        transform.position += new Vector3(GameData.DimensionSize / 2, GameData.DimensionSize * 2 / 3, -GameData.DimensionSize);
+        vector = new Vector3(0, GameData.DimensionSize, 0);
     }
 
-    public void CameraUp()
+    public void CameraVehicleUp()
     {
-
+        transform.position += vector;
     }
 
-    public void CameraDown()
+    public void CameraVehicleDown()
     {
-
+        Debug.Log("entered VehicleDown");
+        transform.position -= vector;
     }
 
-    public void CameraLeft()
+    public void CameraVehicleLeft()
     {
-
+        Debug.Log("Not implemented, yet!");
     }
 
-    public void CameraRight()
+    public void CameraVehicleRight()
     {
-
+        Debug.Log("Not implemented, yet!");
     }
 }

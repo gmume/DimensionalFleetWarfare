@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
     [Range(1,5)] [SerializeField]
     private int dimensionsCount;
     [Range(5, 19)] [SerializeField]
-    private int dimensionSize; //Should be uneven!
+    private float dimensionSize; //Should be uneven!
     [Range(1, 5)] [SerializeField]
     private int fleetSize;
 
@@ -18,15 +19,23 @@ public class StartGame : MonoBehaviour
     public GameObject cellPrefab;
     public GameObject shipPrefab;
 
+    private void Awake()
+    {
+        GameData.DimensionsCount = dimensionsCount;
+        GameData.DimensionSize = (int)dimensionSize;
+        GameData.DimensionDiagonal = dimensionSize * Mathf.Sqrt(2);
+        GameData.FleetSize = fleetSize;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameData.DimensionsCount = dimensionsCount;
-        GameData.DimensionSize = dimensionSize;
-        GameData.DimensionDiagonal = dimensionSize * Mathf.Sqrt(2);
-        GameData.FleetSize = fleetSize;
-
         dimensions1 = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
         dimensions1.InitDimensions(dimensionPrefab, cellPrefab, shipPrefab);
+    }
+
+    void OnValidate()
+    {
+        dimensionSize = 1 + (((int)(dimensionSize + 1.0f) - 1) & 0xFFFFFFFE);
     }
 }
