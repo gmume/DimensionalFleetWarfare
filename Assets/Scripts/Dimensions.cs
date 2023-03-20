@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scripts/GameSetup/Dimensions")]
+[CreateAssetMenu(menuName = "Scripts/Dimensions")]
 
 public class Dimensions : ScriptableObject
 {
@@ -26,11 +26,20 @@ public class Dimensions : ScriptableObject
             dimension.GetComponent<Dimension>().InitDimension(dimensionNr, cellPrefab, fleet.GetFleet());
             dimensions.Add(dimension);
         }
+
+        GameObject dimensionGameObject = (GameObject)dimensions[0];
+        GameData.activeDimension = dimensionGameObject.GetComponent<Dimension>();
     }
 
     public void InitFleet(GameObject prefabShip)
     {
         fleet = ScriptableObject.CreateInstance("Fleet") as Fleet;
         fleet.CreateFleet(prefabShip);
+    }
+
+    public Dimension GetDimension(int nr)
+    {
+        GameObject dimension = (GameObject) dimensions[nr];
+        return dimension.GetComponent<Dimension>();
     }
 }

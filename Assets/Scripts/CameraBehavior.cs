@@ -19,7 +19,6 @@ public class CameraBehavior : MonoBehaviour
 
     public void CameraVehicleDown()
     {
-        Debug.Log("entered VehicleDown");
         transform.position -= vector;
     }
 

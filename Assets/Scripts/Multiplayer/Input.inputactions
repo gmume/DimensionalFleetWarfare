@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Submit",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ad9e4f17-ec49-442b-b1dc-cddcc2039d96",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Cancel",
@@ -56,7 +56,7 @@
                     "id": "f441bca8-d873-4b37-a1d7-92ca133371a8",
                     "expectedControlType": "Stick",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 },
                 {
@@ -192,17 +192,6 @@
                 },
                 {
                     "name": "",
-                    "id": "aca0a407-27c4-4029-8f14-4bbb1cbb7d22",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "MoveSelection",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "24c4f188-a498-427a-a6e2-9625be4085f7",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "Press",
@@ -264,6 +253,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "702b8399-63b1-4acc-8678-151aeec8d67f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveSelection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
