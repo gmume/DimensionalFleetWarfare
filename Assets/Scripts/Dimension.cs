@@ -35,6 +35,8 @@ public class Dimension : MonoBehaviour
                 cells[j][k] = cell;
             }
         }
+
+        GameData.activeCell = GetCell(0, 0).GetComponent<Cell>();
     }
 
     public GameObject GetCell(int x, int y)

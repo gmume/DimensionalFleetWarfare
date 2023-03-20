@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -13,21 +15,22 @@ public class PlayerControls : MonoBehaviour
     private InputActionMap player;
 
     // private fields to store action reference
-    private InputAction submitAction;
-    private InputAction cancelAction;
-    private InputAction changeFocusAction;
-    private InputAction dimensionUpAction;
-    private InputAction dimensionDownAction;
-    private InputAction moveSelectionAction;
-    private InputAction moveCameraAction;
-    private InputAction fleetMenuAction;
-    private InputAction shipLeftAction;
-    private InputAction shipRightAction;
-    private InputAction turnLeftAction;
-    private InputAction turnRightAction;
-    private InputAction fireAction;
+    [SerializeField] private InputAction submitAction;
+    [SerializeField] private InputAction cancelAction;
+    [SerializeField] private InputAction changeFocusAction;
+    [SerializeField] private InputAction dimensionUpAction;
+    [SerializeField] private InputAction dimensionDownAction;
+    [SerializeField] private InputAction moveSelectionAction;
+    [SerializeField] private InputAction moveCameraAction;
+    [SerializeField] private InputAction fleetMenuAction;
+    [SerializeField] private InputAction shipLeftAction;
+    [SerializeField] private InputAction shipRightAction;
+    [SerializeField] private InputAction turnLeftAction;
+    [SerializeField] private InputAction turnRightAction;
+    [SerializeField] private InputAction fireAction;
 
     private GameObject cameraVehicle;
+    private PlayerMoves playerMoves;
 
     public void Awake()
     {
@@ -55,7 +58,8 @@ public class PlayerControls : MonoBehaviour
         changeFocusAction.performed   += ctx => { OnChangeFocus(); };
         dimensionUpAction.performed   += ctx => { OnDimensionUp(); };
         dimensionDownAction.performed += ctx => { OnDimensionDown(); };
-        moveSelectionAction.performed += ctx => { OnMoveSelection(); };
+        moveSelectionAction.performed += ctx => { OnMoveSelection(ctx); };
+        //moveSelectionAction.performed += ctx => Debug.Log(ctx.ReadValue<Vector2>());
         moveCameraAction.performed    += ctx => { OnMoveCamera(); };
         fleetMenuAction.performed     += ctx => { OnFleetMenu(); };
         shipLeftAction.performed      += ctx => { OnShipLeft(); };
@@ -68,6 +72,7 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         cameraVehicle = GameObject.Find("CameraVehicle");
+        playerMoves = GameObject.Find("StartGame").GetComponent<PlayerMoves>();
     }
 
     void Update()
@@ -76,26 +81,25 @@ public class PlayerControls : MonoBehaviour
         //Vector2 moveVector = moveAction.ReadValue<Vector2>();
 
         //Objects, that need to be updated come here?
-        
     }
 
     public void OnEnable()
     {
         input.Enable();
         
-        submitAction.Enable();
-        cancelAction.Enable();
-        changeFocusAction.Enable();
-        dimensionUpAction.Enable();
-        dimensionDownAction.Enable();
-        moveSelectionAction.Enable();
-        moveCameraAction.Enable();
-        fleetMenuAction.Enable();
-        shipLeftAction.Enable();
-        shipRightAction.Enable();
-        turnLeftAction.Enable();
-        turnRightAction.Enable();
-        fireAction.Enable();
+        //submitAction.Enable();
+        //cancelAction.Enable();
+        //changeFocusAction.Enable();
+        //dimensionUpAction.Enable();
+        //dimensionDownAction.Enable();
+        //moveSelectionAction.Enable();
+        //moveCameraAction.Enable();
+        //fleetMenuAction.Enable();
+        //shipLeftAction.Enable();
+        //shipRightAction.Enable();
+        //turnLeftAction.Enable();
+        //turnRightAction.Enable();
+        //fireAction.Enable();
     }
 
     public void OnDisable()
@@ -104,17 +108,17 @@ public class PlayerControls : MonoBehaviour
 
         //submitAction.Disable();
         //cancelAction.Disable();
-        changeFocusAction.Disable();
-        dimensionUpAction.Disable();
-        dimensionDownAction.Disable();
-        moveSelectionAction.Disable();
-        moveCameraAction.Disable();
-        fleetMenuAction.Disable();
-        shipLeftAction.Disable();
-        shipRightAction.Disable();
-        turnLeftAction.Disable();
-        turnRightAction.Disable();
-        fireAction.Disable();
+        //changeFocusAction.Disable();
+        //dimensionUpAction.Disable();
+        //dimensionDownAction.Disable();
+        //moveSelectionAction.Disable();
+        //moveCameraAction.Disable();
+        //fleetMenuAction.Disable();
+        //shipLeftAction.Disable();
+        //shipRightAction.Disable();
+        //turnLeftAction.Disable();
+        //turnRightAction.Disable();
+        //fireAction.Disable();
     }
 
     public void OnSubmit()
@@ -127,7 +131,6 @@ public class PlayerControls : MonoBehaviour
     public void OnCancel()
     {
         //close ship menu
-        //
         Debug.Log("Canceled!");
     }
 
@@ -145,21 +148,48 @@ public class PlayerControls : MonoBehaviour
 
     public void OnDimensionDown()
     {
-        Debug.Log("entred OnDimensionDown");
         //Shift view to lower dimension
         cameraVehicle.GetComponent<CameraBehavior>().CameraVehicleDown();
     }
 
-    public void OnMoveSelection()
+    public void OnMoveSelection(CallbackContext ctx)
     {
         //Change activeted cell
-        Debug.Log("Selection moved!");
+        Vector2 vector = (Vector2)ctx.ReadValueAsObject();
+        Debug.Log("vector: " + vector);
+        float x = vector.x;
+        float y = vector.y;
+
+        //Get right axis
+        if (Math.Abs(x) > Math.Abs(y))
+        {
+            //negative or positive?
+            if(x > 0)
+            {
+                playerMoves.SetNewCell(1, 0);
+            }
+            else
+            {
+                playerMoves.SetNewCell(-1, 0);
+            }
+        }
+        else
+        {
+            if (y > 0)
+            {
+                playerMoves.SetNewCell(0, 1);
+            }
+            else
+            {
+                playerMoves.SetNewCell(0, -1);
+            }
+        }
     }
 
     public void OnMoveCamera()
     {
         //Move camera horizontaly around dimension
-        Debug.Log("Camera moved!");
+        Debug.Log("Not supported, yet!");
     }
 
     public void OnFleetMenu()
@@ -196,5 +226,7 @@ public class PlayerControls : MonoBehaviour
     {
         //Fire on selected cell
         Debug.Log("Fired!");
+        Material cellMaterial = GameData.activeCell.GetComponent<Renderer>().material;
+        cellMaterial.color = Color.red;
     }
 }
