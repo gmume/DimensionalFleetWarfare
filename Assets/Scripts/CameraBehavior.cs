@@ -8,8 +8,8 @@ public class CameraBehavior : MonoBehaviour
 
     public void Start()
     {
-        transform.position += new Vector3(GameData.DimensionSize / 2, GameData.DimensionSize * 2 / 3, -GameData.DimensionSize);
-        vector = new Vector3(0, GameData.DimensionSize, 0);
+        transform.position += new Vector3(OverworldData.DimensionSize / 2, OverworldData.DimensionSize * 2 / 3, -OverworldData.DimensionSize);
+        vector = new Vector3(0, OverworldData.DimensionSize, 0);
     }
 
     public void CameraVehicleUp()
@@ -20,15 +20,5 @@ public class CameraBehavior : MonoBehaviour
     public void CameraVehicleDown()
     {
         transform.position -= vector;
-    }
-
-    public void CameraVehicleLeft()
-    {
-        Debug.Log("Not implemented, yet!");
-    }
-
-    public void CameraVehicleRight()
-    {
-        Debug.Log("Not implemented, yet!");
     }
 }

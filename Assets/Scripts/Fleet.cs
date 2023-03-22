@@ -10,7 +10,7 @@ public class Fleet : ScriptableObject
 
     public void CreateFleet(GameObject shipPrefab)
     {
-        for (int i = 0; i < GameData.FleetSize; i++)
+        for (int i = 0; i < OverworldData.FleetSize; i++)
         {
             GameObject ship = Instantiate(shipPrefab, new Vector3(i, 1, 0), Quaternion.identity);
             ship.GetComponent<Ship>().InitiateShip(i);
