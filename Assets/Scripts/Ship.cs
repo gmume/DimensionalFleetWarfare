@@ -28,7 +28,7 @@ public void InitiateShip(int shipNr)
         Direction = Directions.North;
     }
 
-    public void QuaterTurn()
+    public void QuaterTurnRight()
     {
         Quaternion quaterTurn = Quaternion.Euler(Vector3.forward * 90);
         if (Direction == Directions.North)
@@ -51,6 +51,31 @@ public void InitiateShip(int shipNr)
             this.transform.rotation = quaterTurn;
             Direction = Directions.North;
         }  
+    }
+
+    public void QuaterTurnLeft()
+    {
+        Quaternion quaterTurn = Quaternion.Euler(Vector3.forward * 90);
+        if (Direction == Directions.North)
+        {
+            this.transform.rotation = quaterTurn;
+            Direction = Directions.West;
+        }
+        else if (Direction == Directions.South)
+        {
+            this.transform.rotation = quaterTurn;
+            Direction = Directions.East;
+        }
+        else if (Direction == Directions.East)
+        {
+            this.transform.rotation = quaterTurn;
+            Direction = Directions.North;
+        }
+        else if (Direction == Directions.West)
+        {
+            this.transform.rotation = quaterTurn;
+            Direction = Directions.South;
+        }
     }
 
     public bool[] GetDamagedParts()

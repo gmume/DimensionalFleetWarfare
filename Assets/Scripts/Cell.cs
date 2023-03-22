@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    public int x { get; set; }
-    public int y { get; set; }
-    public bool activated { get; set; }
-    public bool occupied { get; set; }
-    public bool hitted { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
+    public bool Activated { get; set; }
+    public bool Occupied { get; set; }
+    public bool Hitted { get; set; }
 }

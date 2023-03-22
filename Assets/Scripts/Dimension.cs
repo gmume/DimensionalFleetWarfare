@@ -17,26 +17,24 @@ public class Dimension : MonoBehaviour
 
     public void CreateCells(GameObject cellPrefab)
     {
-        cells = new GameObject[GameData.DimensionSize][];
+        cells = new GameObject[OverworldData.DimensionSize][];
 
-        for (int j = 0; j < GameData.DimensionSize; j++)
+        for (int j = 0; j < OverworldData.DimensionSize; j++)
         {
-            cells[j] = new GameObject[GameData.DimensionSize];
+            cells[j] = new GameObject[OverworldData.DimensionSize];
 
-            for (int k = 0; k < GameData.DimensionSize; k++)
+            for (int k = 0; k < OverworldData.DimensionSize; k++)
             {
-                GameObject cell = Instantiate(cellPrefab, new Vector3(j, GameData.DimensionSize * DimensionNr, k), Quaternion.identity);
+                GameObject cell = Instantiate(cellPrefab, new Vector3(j, OverworldData.DimensionSize * DimensionNr, k), Quaternion.identity);
                 cell.transform.parent = this.transform;
-                cell.GetComponent<Cell>().x = j;
-                cell.GetComponent<Cell>().y = k;
-                cell.GetComponent<Cell>().activated = false;
-                cell.GetComponent<Cell>().occupied = false;
-                cell.GetComponent<Cell>().hitted = false;
+                cell.GetComponent<Cell>().X = j;
+                cell.GetComponent<Cell>().Y = k;
+                cell.GetComponent<Cell>().Activated = false;
+                cell.GetComponent<Cell>().Occupied = false;
+                cell.GetComponent<Cell>().Hitted = false;
                 cells[j][k] = cell;
             }
         }
-
-        GameData.activeCell = GetCell(0, 0).GetComponent<Cell>();
     }
 
     public GameObject GetCell(int x, int y)

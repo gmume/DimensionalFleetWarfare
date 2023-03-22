@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5057487984287084755}
   - component: {fileID: 4725396152390134719}
   m_Layer: 0
-  m_Name: StartGame
+  m_Name: Overwold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

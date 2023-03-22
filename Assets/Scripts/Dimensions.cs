@@ -18,17 +18,14 @@ public class Dimensions : ScriptableObject
 
     public void CreateDimensions(GameObject dimensionPrefab, GameObject cellPrefab)
     {
-        for (int dimensionNr = 0; dimensionNr < GameData.DimensionsCount; dimensionNr++)
+        for (int dimensionNr = 0; dimensionNr < OverworldData.DimensionsCount; dimensionNr++)
         {
-            float halfDimensionSize = GameData.DimensionSize / 2;
-            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(halfDimensionSize, GameData.DimensionSize * dimensionNr, halfDimensionSize), Quaternion.identity);
-            dimension.transform.localScale = new Vector3(GameData.DimensionDiagonal, 0.9f, GameData.DimensionDiagonal);
+            float halfDimensionSize = OverworldData.DimensionSize / 2;
+            GameObject dimension = Instantiate(dimensionPrefab, new Vector3(halfDimensionSize, OverworldData.DimensionSize * dimensionNr, halfDimensionSize), Quaternion.identity);
+            dimension.transform.localScale = new Vector3(OverworldData.DimensionDiagonal, 0.9f, OverworldData.DimensionDiagonal);
             dimension.GetComponent<Dimension>().InitDimension(dimensionNr, cellPrefab, fleet.GetFleet());
             dimensions.Add(dimension);
         }
-
-        GameObject dimensionGameObject = (GameObject)dimensions[0];
-        GameData.activeDimension = dimensionGameObject.GetComponent<Dimension>();
     }
 
     public void InitFleet(GameObject prefabShip)
