@@ -24,14 +24,6 @@ public class Overworld : MonoBehaviour
         OverworldData.PlayerTurn = 1;
     }
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    dimensions1 = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
-    //    dimensions1.InitDimensions(dimensionPrefab, cellPrefab, shipPrefab);
-    //    GetComponent<PlayerScript>().InitPlayerScript(dimensions1);
-    //}
-
     void OnValidate()
     {
         dimensionSize = 1 + (((int)(dimensionSize + 1.0f) - 1) & 0xFFFFFFFE);
