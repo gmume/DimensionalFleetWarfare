@@ -169,54 +169,6 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4a55198c-bbed-4ac1-85de-12aff0b234cd
-    m_ActionName: Player1/Submit[/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID1/buttonSouth,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8b69f10b-ad79-4619-94fa-8d44e6cbf095
-    m_ActionName: Player1/Cancel[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 580dca21-f02c-4b74-9a5d-dd5de0bcc866
-    m_ActionName: Player1/ChangeFocus[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID1/buttonNorth,/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0496ea3d-c236-4b05-b591-38ffc1b0b748
-    m_ActionName: Player1/DimensionUp[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID1/dpad/up,/XInputControllerWindows/dpad/up]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1cee07b4-dcdd-4ca3-9273-729512e83448
-    m_ActionName: Player1/DimensionDown[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID1/dpad/down,/XInputControllerWindows/dpad/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8c48b6e5-82ae-44a4-a8f3-85ce098e87bb
-    m_ActionName: Player1/MoveSelection[/DualShock4GamepadHID/leftStick,/DualShock4GamepadHID1/leftStick,/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b201e130-abe8-498e-bf25-d020767edc30
-    m_ActionName: Player1/FleetMenu[/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID1/buttonWest,/XInputControllerWindows/buttonWest]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: aee2ab47-5059-45fd-a837-281de5960bcb
-    m_ActionName: Player1/ShipLeft[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID1/dpad/left,/XInputControllerWindows/dpad/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fb8a1692-2b6e-49f0-b7de-f78b94e8b96a
-    m_ActionName: Player1/ShipRight[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID1/dpad/right,/XInputControllerWindows/dpad/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 09084798-b62b-498b-b685-9c62603aed38
-    m_ActionName: Player1/TurnLeft[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID1/leftShoulder,/XInputControllerWindows/leftShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f818dbd8-f0ed-441a-b20d-7d42506f5384
-    m_ActionName: Player1/TurnRight[/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID1/rightShoulder,/XInputControllerWindows/rightShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 455dc3fa-a8b6-4632-990f-e8341f785b1a
-    m_ActionName: Player1/Fire[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
@@ -230,8 +182,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ad9e4f17-ec49-442b-b1dc-cddcc2039d96
-    m_ActionName: Player2/Submit[/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID1/buttonSouth,/XInputControllerWindows/buttonSouth]
+    m_ActionId: 4a55198c-bbed-4ac1-85de-12aff0b234cd
+    m_ActionName: Player1/Submit[/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID1/buttonSouth,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -246,8 +198,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 22da8a5b-cfd8-41be-940f-2beed9fdadca
-    m_ActionName: Player2/Cancel[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast,/XInputControllerWindows/buttonEast]
+    m_ActionId: 8b69f10b-ad79-4619-94fa-8d44e6cbf095
+    m_ActionName: Player1/Cancel[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -262,14 +214,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: f93bde44-0d77-48f0-8a6e-41f2f2abd0bf
-    m_ActionName: Player2/ChangeFocus[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID1/buttonNorth,/XInputControllerWindows/buttonNorth]
+    m_ActionId: 580dca21-f02c-4b74-9a5d-dd5de0bcc866
+    m_ActionName: Player1/ChangeFocus[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID1/buttonNorth,/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 924541345}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleUp
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -278,14 +230,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 9157a63a-2651-4877-a0db-e8369b98f896
-    m_ActionName: Player2/DimensionUp[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID1/dpad/up,/XInputControllerWindows/dpad/up]
+    m_ActionId: 0496ea3d-c236-4b05-b591-38ffc1b0b748
+    m_ActionName: Player1/DimensionUp[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID1/dpad/up,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 924541345}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleDown
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -294,8 +246,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8d28872f-84c5-49c4-a0a3-86a662056eb6
-    m_ActionName: Player2/DimensionDown[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID1/dpad/down,/XInputControllerWindows/dpad/down]
+    m_ActionId: 1cee07b4-dcdd-4ca3-9273-729512e83448
+    m_ActionName: Player1/DimensionDown[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID1/dpad/down,/XInputControllerWindows/dpad/down]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -310,8 +262,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: f441bca8-d873-4b37-a1d7-92ca133371a8
-    m_ActionName: Player2/MoveSelection[/DualShock4GamepadHID/leftStick,/DualShock4GamepadHID1/leftStick,/XInputControllerWindows/leftStick]
+    m_ActionId: 8c48b6e5-82ae-44a4-a8f3-85ce098e87bb
+    m_ActionName: Player1/MoveSelection[/DualShock4GamepadHID/leftStick,/DualShock4GamepadHID1/leftStick,/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -326,8 +278,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: b38b4ca4-53d0-4eee-9521-c9e78c88f3f3
-    m_ActionName: Player2/FleetMenu[/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID1/buttonWest,/XInputControllerWindows/buttonWest]
+    m_ActionId: b201e130-abe8-498e-bf25-d020767edc30
+    m_ActionName: Player1/FleetMenu[/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID1/buttonWest,/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -342,8 +294,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 561c54fa-7172-47aa-b89f-59b503637a8b
-    m_ActionName: Player2/ShipLeft[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID1/dpad/left,/XInputControllerWindows/dpad/left]
+    m_ActionId: aee2ab47-5059-45fd-a837-281de5960bcb
+    m_ActionName: Player1/ShipLeft[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID1/dpad/left,/XInputControllerWindows/dpad/left]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -358,8 +310,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 2ae70f90-8abd-4b9e-ae3c-a675063af2ae
-    m_ActionName: Player2/ShipRight[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID1/dpad/right,/XInputControllerWindows/dpad/right]
+    m_ActionId: fb8a1692-2b6e-49f0-b7de-f78b94e8b96a
+    m_ActionName: Player1/ShipRight[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID1/dpad/right,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -374,8 +326,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 39fccbf7-69c4-4e6e-8f2e-8489fa8479a2
-    m_ActionName: Player2/TurnLeft[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID1/leftShoulder,/XInputControllerWindows/leftShoulder]
+    m_ActionId: 09084798-b62b-498b-b685-9c62603aed38
+    m_ActionName: Player1/TurnLeft[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID1/leftShoulder,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
@@ -390,14 +342,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 94a0a1b4-d265-4ba0-9fed-12b2b7586d9f
-    m_ActionName: Player2/TurnRight[/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID1/rightShoulder,/XInputControllerWindows/rightShoulder]
+    m_ActionId: f818dbd8-f0ed-441a-b20d-7d42506f5384
+    m_ActionName: Player1/TurnRight[/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID1/rightShoulder,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 266220751}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: OnFire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -406,8 +358,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5414ff4d-5e7b-4539-8bc0-28bdffd0f3a0
-    m_ActionName: Player2/Fire[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/XInputControllerWindows/rightTrigger]
+    m_ActionId: 455dc3fa-a8b6-4632-990f-e8341f785b1a
+    m_ActionName: Player1/Fire[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 48ed1f56-d9f3-4dd9-aa68-cd395f9cffeb
@@ -448,9 +400,9 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cf48a22f-bdc8-42ea-b4c2-f481f82c77cb
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player2
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &266220749
@@ -715,7 +667,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1798278739}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleUp
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -731,7 +683,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1798278739}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleDown
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -843,7 +795,7 @@ MonoBehaviour:
       - m_Target: {fileID: 770825982}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: OnFire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -854,54 +806,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 455dc3fa-a8b6-4632-990f-e8341f785b1a
     m_ActionName: Player1/Fire[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ad9e4f17-ec49-442b-b1dc-cddcc2039d96
-    m_ActionName: Player2/Submit[/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID1/buttonSouth,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 22da8a5b-cfd8-41be-940f-2beed9fdadca
-    m_ActionName: Player2/Cancel[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f93bde44-0d77-48f0-8a6e-41f2f2abd0bf
-    m_ActionName: Player2/ChangeFocus[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID1/buttonNorth,/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9157a63a-2651-4877-a0db-e8369b98f896
-    m_ActionName: Player2/DimensionUp[/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID1/dpad/up,/XInputControllerWindows/dpad/up]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8d28872f-84c5-49c4-a0a3-86a662056eb6
-    m_ActionName: Player2/DimensionDown[/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID1/dpad/down,/XInputControllerWindows/dpad/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f441bca8-d873-4b37-a1d7-92ca133371a8
-    m_ActionName: Player2/MoveSelection[/DualShock4GamepadHID/leftStick,/DualShock4GamepadHID1/leftStick,/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b38b4ca4-53d0-4eee-9521-c9e78c88f3f3
-    m_ActionName: Player2/FleetMenu[/DualShock4GamepadHID/buttonWest,/DualShock4GamepadHID1/buttonWest,/XInputControllerWindows/buttonWest]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 561c54fa-7172-47aa-b89f-59b503637a8b
-    m_ActionName: Player2/ShipLeft[/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID1/dpad/left,/XInputControllerWindows/dpad/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2ae70f90-8abd-4b9e-ae3c-a675063af2ae
-    m_ActionName: Player2/ShipRight[/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID1/dpad/right,/XInputControllerWindows/dpad/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 39fccbf7-69c4-4e6e-8f2e-8489fa8479a2
-    m_ActionName: Player2/TurnLeft[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID1/leftShoulder,/XInputControllerWindows/leftShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 94a0a1b4-d265-4ba0-9fed-12b2b7586d9f
-    m_ActionName: Player2/TurnRight[/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID1/rightShoulder,/XInputControllerWindows/rightShoulder]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5414ff4d-5e7b-4539-8bc0-28bdffd0f3a0
-    m_ActionName: Player2/Fire[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 48ed1f56-d9f3-4dd9-aa68-cd395f9cffeb
@@ -942,9 +846,9 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cf48a22f-bdc8-42ea-b4c2-f481f82c77cb
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player1
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &770825980
@@ -1236,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
       propertyPath: dimensionsCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5057487984287084755, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
