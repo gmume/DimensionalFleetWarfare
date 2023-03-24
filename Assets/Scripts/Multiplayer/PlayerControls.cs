@@ -9,10 +9,12 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerControls : MonoBehaviour
 {
     private PlayerScript player;
+    private string playerName;
 
     private void Start()
     {
         player = GetComponent<PlayerScript>();
+        playerName = gameObject.name;
     }
 
     public void OnSubmit()
@@ -36,34 +38,44 @@ public class PlayerControls : MonoBehaviour
 
     public void OnMoveSelection(CallbackContext ctx)
     {
-        //Debug.Log("Selection moved!");
-        //Change activeted cell
-        Vector2 vector = ctx.ReadValue<Vector2>();
-        float x = vector.x;
-        float y = vector.y;
+        if(ctx.performed == true)
+        {
+            if (playerName == "Player1" && OverworldData.PlayerTurn == 1 || playerName == "Player2" && OverworldData.PlayerTurn == 2)
+            {
+                //Debug.Log("Selection moved!");
+                //Change activeted cell
+                Vector2 vector = ctx.ReadValue<Vector2>();
+                float x = vector.x;
+                float y = vector.y;
 
-        //Get right axis
-        if (Math.Abs(x) > Math.Abs(y))
-        {
-            //negative or positive?
-            if (x > 0)
-            {
-                player.SetNewCell(1, 0);
+                //Get right axis
+                if (Math.Abs(x) > Math.Abs(y))
+                {
+                    //negative or positive?
+                    if (x > 0)
+                    {
+                        player.SetNewCell(1, 0);
+                    }
+                    else
+                    {
+                        player.SetNewCell(-1, 0);
+                    }
+                }
+                else
+                {
+                    if (y > 0)
+                    {
+                        player.SetNewCell(0, 1);
+                    }
+                    else
+                    {
+                        player.SetNewCell(0, -1);
+                    }
+                }
             }
             else
             {
-                player.SetNewCell(-1, 0);
-            }
-        }
-        else
-        {
-            if (y > 0)
-            {
-                player.SetNewCell(0, 1);
-        }
-            else
-            {
-                player.SetNewCell(0, -1);
+                print("It's not your turn!");
             }
         }
     }
@@ -98,12 +110,31 @@ public class PlayerControls : MonoBehaviour
         Debug.Log("Turned right!");
     }
 
-    public void OnFire()
+    public void OnFire(CallbackContext ctx)
     {
-        //Fire on selected cell
-        //Debug.Log("Fired!");
-        Material cellMaterial = player.playerData.ActiveCell.GetComponent<Renderer>().material;
-        cellMaterial.color = Color.red;
-        player.playerData.ActiveCell.Hitted = true;
+        if (ctx.performed == true)
+        {
+            if (playerName == "Player1" && OverworldData.PlayerTurn == 1 || playerName == "Player2" && OverworldData.PlayerTurn == 2)
+            {
+                //Fire on selected cell
+                //Debug.Log("Fired!");
+                Material cellMaterial = player.playerData.ActiveCell.GetComponent<Renderer>().material;
+                cellMaterial.color = Color.red;
+                player.playerData.ActiveCell.Hitted = true;
+
+                if (playerName == "Player1")
+                {
+                    OverworldData.PlayerTurn = 2;
+                }
+                else
+                {
+                    OverworldData.PlayerTurn = 1;
+                }
+            }
+            else
+            {
+                print("It's not your turn!");
+            }
+        }
     }
 }

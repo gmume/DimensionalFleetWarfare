@@ -221,7 +221,7 @@ MonoBehaviour:
       - m_Target: {fileID: 924541345}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleUp
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -237,7 +237,7 @@ MonoBehaviour:
       - m_Target: {fileID: 924541345}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleDown
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -349,7 +349,7 @@ MonoBehaviour:
       - m_Target: {fileID: 266220751}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: OnFire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -667,7 +667,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1798278739}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleUp
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -683,7 +683,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1798278739}
         m_TargetAssemblyTypeName: CameraBehavior, Assembly-CSharp
         m_MethodName: CameraVehicleDown
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -795,7 +795,7 @@ MonoBehaviour:
       - m_Target: {fileID: 770825982}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
         m_MethodName: OnFire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1140,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
       propertyPath: dimensionsCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5057487984287084755, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
