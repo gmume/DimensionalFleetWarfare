@@ -26,7 +26,7 @@ public class Dimension : MonoBehaviour
             for (int k = 0; k < OverworldData.DimensionSize; k++)
             {
                 GameObject cell = Instantiate(cellPrefab, new Vector3(j, OverworldData.DimensionSize * DimensionNr, k), Quaternion.identity);
-                cell.layer = Layer.SetLayer(playerName);
+                cell.layer = Layer.SetLayerPlayer(playerName);
                 cell.transform.parent = this.transform;
                 cell.GetComponent<Cell>().X = j;
                 cell.GetComponent<Cell>().Y = k;
