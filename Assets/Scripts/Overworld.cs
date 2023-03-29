@@ -12,11 +12,9 @@ public class Overworld : MonoBehaviour
     [Range(1, 5)] [SerializeField]
     private int fleetSize;
 
-    private PlayerScript player1;
-    private PlayerScript player2;
-
     private void Awake()
     {
+        OverworldData.GamePhace = GamePhaces.Start;
         OverworldData.DimensionsCount = dimensionsCount;
         OverworldData.DimensionSize = (int)dimensionSize;
         OverworldData.DimensionDiagonal = dimensionSize * Mathf.Sqrt(2);

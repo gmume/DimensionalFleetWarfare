@@ -6,15 +6,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class PlayerControls : MonoBehaviour
+public class InputHandling : MonoBehaviour
 {
-    private PlayerScript player;
+    private PlayerScript playerScript;
     private string playerName;
+    private PlayerScript opponent;
 
     private void Start()
     {
-        player = GetComponent<PlayerScript>();
+        playerScript = GetComponent<PlayerScript>();
         playerName = gameObject.name;
+        
+        if(playerName == "Player1")
+        {
+            opponent = GameObject.Find("Player2").GetComponent<PlayerScript>();
+        }
+        else
+        {
+            opponent = GameObject.Find("Player1").GetComponent<PlayerScript>();
+        }
     }
 
     public void OnSubmit()
@@ -28,12 +38,6 @@ public class PlayerControls : MonoBehaviour
     {
         //close ship menu
         Debug.Log("Canceled!");
-    }
-
-    public void OnChangeFocus()
-    {
-        //Shift view on own dimensions to view on oponents dimensions
-        Debug.Log("Changed focus!");
     }
 
     public void OnMoveSelection(CallbackContext ctx)
@@ -54,22 +58,22 @@ public class PlayerControls : MonoBehaviour
                     //negative or positive?
                     if (x > 0)
                     {
-                        player.SetNewCell(1, 0);
+                        playerScript.SetNewCell(1, 0);
                     }
                     else
                     {
-                        player.SetNewCell(-1, 0);
+                        playerScript.SetNewCell(-1, 0);
                     }
                 }
                 else
                 {
                     if (y > 0)
                     {
-                        player.SetNewCell(0, 1);
+                        playerScript.SetNewCell(0, 1);
                     }
                     else
                     {
-                        player.SetNewCell(0, -1);
+                        playerScript.SetNewCell(0, -1);
                     }
                 }
             }
@@ -118,23 +122,34 @@ public class PlayerControls : MonoBehaviour
             {
                 //Fire on selected cell
                 //Debug.Log("Fired!");
-                Material cellMaterial = player.playerData.ActiveCell.GetComponent<Renderer>().material;
-                cellMaterial.color = Color.red;
-                player.playerData.ActiveCell.Hitted = true;
+                Material cellMaterial = playerScript.playerData.ActiveCell.GetComponent<Renderer>().material;
+
+                playerScript.playerData.ActiveCell.Hitted = true;
 
                 if (playerName == "Player1")
                 {
+                    cellMaterial.color = Color.red;
                     OverworldData.PlayerTurn = 2;
                 }
                 else
                 {
+                    cellMaterial.color = Color.yellow;
                     OverworldData.PlayerTurn = 1;
                 }
+                WaitForEndOfFrame(3);
+                playerScript.ChangeCamera();
+                opponent.ChangeCamera();
             }
             else
             {
-                print("It's not your turn!");
+                print("It's not your turn, yet!");
             }
         }
+    }
+
+    private IEnumerable<WaitForSecondsRealtime> WaitForEndOfFrame(int sec)
+    {
+
+        yield return new WaitForSecondsRealtime(3);
     }
 }

@@ -13,7 +13,7 @@ public class Fleet : ScriptableObject
         for (int i = 0; i < OverworldData.FleetSize; i++)
         {
             GameObject ship = Instantiate(shipPrefab, new Vector3(i, 1, 0), Quaternion.identity);
-            ship.layer = Layer.SetLayer(playerName);
+            ship.layer = Layer.SetLayerFleet(playerName);
             ship.GetComponent<Ship>().InitiateShip(i);
             fleet.Add(ship);
         }
