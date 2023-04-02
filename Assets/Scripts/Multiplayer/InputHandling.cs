@@ -8,9 +8,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class InputHandling : MonoBehaviour
 {
-    private PlayerScript playerScript;
+    private PlayerScript playerScript, opponent;
     private string playerName;
-    private PlayerScript opponent;
 
     private void Start()
     {
@@ -137,8 +136,8 @@ public class InputHandling : MonoBehaviour
                     OverworldData.PlayerTurn = 1;
                 }
                 WaitForEndOfFrame(3);
-                playerScript.ChangeCamera();
-                opponent.ChangeCamera();
+                playerScript.ChangeCameraVehicle();
+                opponent.ChangeCameraVehicle();
             }
             else
             {
