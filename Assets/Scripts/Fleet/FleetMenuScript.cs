@@ -12,11 +12,12 @@ public class FleetMenuScript : MonoBehaviour
     private GameObject fleetMenu;
 
     public EventSystem eventSystem;
+    public GameObject firstSelectedButton;
     public GameObject selectedElement;
 
     private void Start()
     {
-        if (this.name == "FleetMenu1")
+        if (name == "FleetMenu1")
         {
             fleetMenu = GameObject.Find("FleetMenu1");
         }
@@ -41,11 +42,11 @@ public class FleetMenuScript : MonoBehaviour
             {
                 fleetMenu.SetActive(true);
                 eventSystem.SetSelectedGameObject(null);
-                //eventSystem.SetSelectedGameObject(ship1Button);
             }
             else
             {
                 fleetMenu.SetActive(false);
+                SetFirstSelecetedButton();
             }
         }
     }
@@ -57,9 +58,9 @@ public class FleetMenuScript : MonoBehaviour
         {
             GameObject buttonObj = TMP_DefaultControls.CreateButton(new TMP_DefaultControls.Resources());
             Button button = buttonObj.GetComponent<Button>();
-            button.transform.SetParent(this.transform, false);
+            button.transform.SetParent(transform, false);
 
-            if (this.name == "FleetMenu1")
+            if (name == "FleetMenu1")
             {
                 buttonObj.name = "Ship1." + (i + 1).ToString();
                 buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
@@ -68,7 +69,6 @@ public class FleetMenuScript : MonoBehaviour
 
                 if(player == null || player.name != "Player1")
                 {
-                    Debug.Log("entred if Player1");
                     player = GameObject.Find("Player1");
                 }
             }
@@ -81,18 +81,16 @@ public class FleetMenuScript : MonoBehaviour
 
                 if (player == null || player.name != "Player2")
                 {
-                    Debug.Log("entred if Player2");
                     player = GameObject.Find("Player2");
                 }
             }
 
-            button.onClick.AddListener(new UnityAction(player.GetComponent<PlayerScript>().GetFleet().ActivateShip)); // Does not work, yet!!
-            Debug.Log("button.onClick.GetPersistentTarget(0): "+button.onClick.GetPersistentEventCount());
-            button.navigation = new Navigation() { mode = Navigation.Mode.Horizontal };
+            AddOnClickListener(buttonObj, button, i, player);
 
             if (i == 0)
             {
-                eventSystem.firstSelectedGameObject = buttonObj;
+                firstSelectedButton = buttonObj;
+                SetFirstSelecetedButton();
             }
         }
     }
@@ -107,5 +105,20 @@ public class FleetMenuScript : MonoBehaviour
         newButtonColors.pressedColor = Color.green - subColor;
         newButtonColors.disabledColor = Color.gray - subColor;
         return newButtonColors;
+    }
+
+    private void AddOnClickListener(GameObject buttonObj,Button button, int shipNr, GameObject player)
+    {
+        buttonObj.AddComponent<ShipButton>();
+        ShipButton shipButton = buttonObj.GetComponent<ShipButton>();
+        shipButton.ShipNr = shipNr;
+        PlayerScript playerScript = player.GetComponent<PlayerScript>();
+        Fleet fleet = playerScript.GetFleet();
+        button.onClick.AddListener(() => fleet.ActivateShip(shipButton.ShipNr, player));
+    }
+
+    public void SetFirstSelecetedButton()
+    {
+        eventSystem.SetSelectedGameObject(firstSelectedButton);
     }
 }

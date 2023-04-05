@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Scripts/Fleet")]
 
@@ -19,14 +20,12 @@ public class Fleet : ScriptableObject
         }
     }
 
-    //public void SelectShip()
-    //{
-
-    //}
-
-    public void ActivateShip()
+    public void ActivateShip(int shipNr, GameObject player)
     {
-        Debug.Log("Ship activeted!");
+        GameObject shipObj = (GameObject)fleet[shipNr];
+        shipObj.GetComponent<Ship>().Activate(player.GetComponent<PlayerScript>());
+        player.GetComponent<PlayerInput>().SwitchCurrentActionMap("GameStart");
+        player.GetComponent<InputHandling>().SwitchActionMap("GameStart");
     }
 
     public ArrayList GetFleet()

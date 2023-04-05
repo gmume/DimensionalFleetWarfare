@@ -27,7 +27,7 @@ public class Dimension : MonoBehaviour
             {
                 GameObject cell = Instantiate(cellPrefab, new Vector3(j, OverworldData.DimensionSize * DimensionNr, k), Quaternion.identity);
                 cell.layer = Layer.SetLayerPlayer(playerName);
-                cell.transform.parent = this.transform;
+                cell.transform.parent = transform;
                 cell.GetComponent<Cell>().X = j;
                 cell.GetComponent<Cell>().Y = k;
                 cell.GetComponent<Cell>().Activated = false;
@@ -49,7 +49,7 @@ public class Dimension : MonoBehaviour
         {
             if(ship.GetComponent<Ship>().Dimension == DimensionNr)
             {
-                ship.transform.parent = this.transform;
+                ship.transform.parent = transform;
                 ships.Add(ship);
             }
         }
