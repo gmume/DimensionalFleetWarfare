@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/gmumeTest.unity
     guid: f6d0ad5ebfd5eca4499726d059206a43
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 65763c3f397c7b94a8920e04129bf778,
+      type: 2}

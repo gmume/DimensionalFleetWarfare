@@ -6,28 +6,19 @@
             "id": "c090e6e7-0ef5-4446-acaf-12750a00f654",
             "actions": [
                 {
-                    "name": "Submit",
+                    "name": "ReturnToFleetMenu",
                     "type": "Button",
-                    "id": "76f151bc-9dc6-4b6b-b413-12b994a40d3c",
+                    "id": "d252cac9-5cc3-44d4-9a43-fee3897b1d1f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Cancel",
-                    "type": "Button",
-                    "id": "774f723d-e6f5-4319-8a3e-62e6ab0e6345",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MoveShip",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "f5a7a2f6-f83f-4827-9720-a6b8a455c71f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
@@ -49,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SubmitFleet",
+                    "type": "Button",
+                    "id": "76f151bc-9dc6-4b6b-b413-12b994a40d3c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -56,7 +56,7 @@
                     "name": "",
                     "id": "43ffadc1-2eeb-483f-9d8d-cc33a88b6b20",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "TurnLeft",
@@ -67,7 +67,7 @@
                     "name": "",
                     "id": "388cf640-ff21-48ed-bdc9-0d23dee6859c",
                     "path": "<Gamepad>/rightShoulder",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "TurnRight",
@@ -76,9 +76,9 @@
                 },
                 {
                     "name": "",
-                    "id": "fe5abfd6-8a52-4ce6-ae04-a3bd9e973544",
+                    "id": "54a80666-331f-496f-af18-aa559931fa77",
                     "path": "<Gamepad>/leftStick",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "MoveShip",
@@ -87,23 +87,23 @@
                 },
                 {
                     "name": "",
-                    "id": "1d634c2d-4e64-43a3-8eb3-d6c248383a89",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "id": "b2ee14de-c593-46cc-8b27-8ee7a1d4c52b",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Submit",
+                    "action": "ReturnToFleetMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "fe2b1ff8-d5db-4e14-8589-886104c527e8",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press",
+                    "id": "1d634c2d-4e64-43a3-8eb3-d6c248383a89",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Cancel",
+                    "action": "SubmitFleet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -119,8 +119,8 @@
                     "id": "4a55198c-bbed-4ac1-85de-12aff0b234cd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -173,7 +173,7 @@
                     "name": "",
                     "id": "9054f9ee-57d3-48fd-b4cd-999f7b3087f8",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Submit",
@@ -184,7 +184,7 @@
                     "name": "",
                     "id": "12551dc4-4d98-404b-9de7-4507fbaa444b",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Cancel",
@@ -252,7 +252,7 @@
                 },
                 {
                     "name": "Submit",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -261,7 +261,7 @@
                 },
                 {
                     "name": "Cancel",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
                     "expectedControlType": "Button",
                     "processors": "",

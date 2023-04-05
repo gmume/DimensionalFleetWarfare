@@ -9,4 +9,5 @@ public class PlayerData : ScriptableObject
     public VehicleBehavior VehicleBehavior { get; set; }
     public Dimension ActiveDimension { get; set; }
     public Cell ActiveCell { get; set; }
+    public Ship ActiveShip { get; set; }
 }

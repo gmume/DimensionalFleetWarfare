@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     public PlayerData playerData;
+    public string ShipName;
     public GameObject dimensionPrefab, cellPrefab, shipPrefab;
 
     private GameObject cameraVehicleA, cameraVehicleB;
     private VehicleBehavior vehicleBehaviorA, vehicleBehaviorB;
     private Dimensions dimensions;
     private int currentX = 0, currentY = 0;
-    //private int currentY = 0;
 
     public void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
         SetNewDimension(0);
         SetNewCell(0, 0);
 
-        if (this.name == "Player1")
+        if (name == "Player1")
         {
             cameraVehicleA = GameObject.Find("CameraVehicle1A");
             cameraVehicleB = GameObject.Find("CameraVehicle1B");
@@ -40,8 +40,18 @@ public class PlayerScript : MonoBehaviour
 
             playerData.VehicleBehavior = vehicleBehaviorB;
         }
+    }
 
-        GameObject.Find(this.name).GetComponent<PlayerInput>().SwitchCurrentActionMap("GameStart");
+    private void Update()
+    {
+        if(playerData.ActiveShip == null)
+        {
+            ShipName = "no ship";
+        }
+        else
+        {
+            ShipName = playerData.ActiveShip.ShipName;
+        }
     }
 
     public void ChangeCameraVehicle()
