@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     public void Start()
     {
         dimensions = ScriptableObject.CreateInstance("Dimensions") as Dimensions;
-        dimensions.InitDimensions(gameObject.name, dimensionPrefab, cellPrefab, shipPrefab);
+        dimensions.InitDimensions(this.GetComponent<PlayerScript>(), dimensionPrefab, cellPrefab, shipPrefab);
         SetNewDimension(0);
         SetNewCell(0, 0);
 

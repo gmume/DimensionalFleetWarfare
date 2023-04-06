@@ -8,14 +8,26 @@ public class Dimension : MonoBehaviour
     private GameObject[][] cells;
     private readonly ArrayList ships = new();
 
-    public void InitDimension(string playerName, int nr, GameObject cellPrefab, ArrayList fleet)
+    public void InitDimension(PlayerScript playerScript, int nr, GameObject cellPrefab, ArrayList fleet)
     {
         DimensionNr = nr;
-        CreateCells(playerName, cellPrefab);
-        AddShips(fleet);
+        CreateCells(playerScript, cellPrefab);
+
+        if(DimensionNr == 0)
+        {
+            playerScript.playerData.ActiveDimension = this.GetComponent<Dimension>();
+            AddShips(fleet);
+            for (int i = 0; i < fleet.Count; i++)
+            {
+                GameObject shipObj = (GameObject)fleet[i];
+                Ship ship = shipObj.GetComponent<Ship>();
+                ship.Dimension = this.GetComponent<Dimension>();
+                ship.OccupyCell();
+            }
+        }
     }
 
-    public void CreateCells(string playerName, GameObject cellPrefab)
+    public void CreateCells(PlayerScript playerScript, GameObject cellPrefab)
     {
         cells = new GameObject[OverworldData.DimensionSize][];
 
@@ -26,7 +38,7 @@ public class Dimension : MonoBehaviour
             for (int k = 0; k < OverworldData.DimensionSize; k++)
             {
                 GameObject cell = Instantiate(cellPrefab, new Vector3(j, OverworldData.DimensionSize * DimensionNr, k), Quaternion.identity);
-                cell.layer = Layer.SetLayerPlayer(playerName);
+                cell.layer = Layer.SetLayerPlayer(playerScript);
                 cell.transform.parent = transform;
                 cell.GetComponent<Cell>().X = j;
                 cell.GetComponent<Cell>().Y = k;
@@ -47,7 +59,7 @@ public class Dimension : MonoBehaviour
     {
         foreach(GameObject ship in newShips)
         {
-            if(ship.GetComponent<Ship>().Dimension == DimensionNr)
+            if (ship.GetComponent<Ship>().Dimension == this)
             {
                 ship.transform.parent = transform;
                 ships.Add(ship);

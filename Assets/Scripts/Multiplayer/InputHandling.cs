@@ -143,7 +143,6 @@ public class InputHandling : MonoBehaviour
 
     private IEnumerator WaitForOpponent()
     {
-        Debug.Log("Both submitted fleet: " + (OverworldData.Player1SubmittedFleet && OverworldData.Player2SubmittedFleet));
         yield return new WaitUntil(() => (OverworldData.Player1SubmittedFleet && OverworldData.Player2SubmittedFleet));
         Debug.Log("Your opponent is ready. Let's go!");
         playerInput.ActivateInput();
