@@ -24,6 +24,8 @@ public class MultiDisplay : MonoBehaviour
         camera1A.SetTargetBuffers(Display.main.colorBuffer, Display.main.depthBuffer);
 
         //Funktioniert nur im Standallone-Build. Im Editor werden mehrere Displays nicht unterstützt und  Display.displays.Length gibt immer 1 zurück!
+
+
         //Debug.LogError("Display.displays.Length: " + Display.displays.Length);
 
         Display.displays[1].Activate();

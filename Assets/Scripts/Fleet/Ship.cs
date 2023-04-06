@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public string ShipName { get; private set; }
-    public int Dimension { get; private set; }
+    public Dimension Dimension { get; set; }
     private Transform position;
     public int X { get; private set; }
     public int Z { get; private set; }
@@ -21,6 +21,7 @@ public class Ship : MonoBehaviour
             Vector3 vectorUp = new(0f, 0.1f, 0f);
             GetComponent<Transform>().position += vectorUp;
             player.playerData.ActiveShip = this;
+            ReleaseCell(X, Z);
         }
         else
         {
@@ -33,7 +34,7 @@ public class Ship : MonoBehaviour
         GetComponent<Renderer>().material.color = Color.gray;
         Vector3 vectorDown = new(0f, -0.1f, 0f);
         GetComponent<Transform>().position += vectorDown;
-        
+        OccupyCell();
         player.playerData.ActiveShip = null;
     }
 
@@ -108,6 +109,16 @@ public class Ship : MonoBehaviour
         }
     }
 
+    public void OccupyCell()
+    {
+        Dimension.GetCell(X, Z).GetComponent<Cell>().Occupied = true;
+    }
+
+    private void ReleaseCell(int x, int y)
+    {
+        Dimension.GetCell(x, y).GetComponent<Cell>().Occupied = false;
+    }
+
     public bool[] GetDamagedParts()
     {
         return partDamaged;
@@ -116,7 +127,6 @@ public class Ship : MonoBehaviour
     public void InitiateShip(int shipNr)
     {
         ShipName = "ship" + PartsCount.ToString();
-        Dimension = 0;
         position = GetComponent<Transform>();
         X = shipNr;
         Direction = Directions.North;

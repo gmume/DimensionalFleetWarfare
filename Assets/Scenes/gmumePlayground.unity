@@ -1190,6 +1190,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2185481485913320682, guid: 7a932b947924a284e99834f0f7fe936c,
         type: 3}
+    - target: {fileID: 3227109781402932499, guid: 4132fc7527b32614bb1704c55cb14c3c,
+        type: 3}
+      propertyPath: m_SendPointerHoverToParent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227109781402932499, guid: 4132fc7527b32614bb1704c55cb14c3c,
+        type: 3}
+      propertyPath: m_DeselectOnBackgroundClick
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7103048721020633485, guid: 4132fc7527b32614bb1704c55cb14c3c,
         type: 3}
       propertyPath: m_Name
@@ -1605,6 +1615,11 @@ PrefabInstance:
       propertyPath: m_FirstSelected
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2175944486537163484, guid: 4132fc7527b32614bb1704c55cb14c3c,
+        type: 3}
+      propertyPath: m_sendNavigationEvents
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3227109781402932499, guid: 4132fc7527b32614bb1704c55cb14c3c,
         type: 3}
       propertyPath: m_MoveAction
@@ -1645,6 +1660,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2185481485913320682, guid: 7a932b947924a284e99834f0f7fe936c,
         type: 3}
+    - target: {fileID: 3227109781402932499, guid: 4132fc7527b32614bb1704c55cb14c3c,
+        type: 3}
+      propertyPath: m_SendPointerHoverToParent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227109781402932499, guid: 4132fc7527b32614bb1704c55cb14c3c,
+        type: 3}
+      propertyPath: m_DeselectOnBackgroundClick
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7103048721020633485, guid: 4132fc7527b32614bb1704c55cb14c3c,
         type: 3}
       propertyPath: m_Name
@@ -2616,7 +2641,7 @@ PrefabInstance:
     - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
       propertyPath: fleetSize
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4725396152390134719, guid: c37d345ab0c57d74ba6ddf380005a72e,
         type: 3}
@@ -2771,7 +2796,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7950535818906762638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -2780,7 +2805,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &7840203152263218937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2788,7 +2813,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7582825633378279122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -2797,7 +2822,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &7840203152263218938
 MonoBehaviour:
   m_ObjectHideFlags: 0
