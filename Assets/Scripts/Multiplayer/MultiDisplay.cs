@@ -39,10 +39,4 @@ public class MultiDisplay : MonoBehaviour
         camera2A.enabled = !camera2A.enabled;
         camera2B.enabled = !camera2B.enabled;
     }
-
-    //private void InitPlayPhace()
-    //{
-    //    //resolve
-    //    //init/update
-    //}
 }

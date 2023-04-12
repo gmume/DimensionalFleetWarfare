@@ -10,11 +10,11 @@ using static UnityEngine.InputSystem.InputAction;
 public class FleetMenuScript : MonoBehaviour
 {
     private GameObject fleetMenu;
+    private GameObject[] shipButtons;
 
     public EventSystem eventSystem;
     public GameObject firstSelectedButton;
     public GameObject selectedElement;
-    private readonly ArrayList buttons = new();
 
     private void Start()
     {
@@ -27,6 +27,7 @@ public class FleetMenuScript : MonoBehaviour
             fleetMenu = GameObject.Find("FleetMenu2");
         }
 
+        shipButtons = new GameObject[OverworldData.FleetSize];
         CreateShipButtons();
     }
 
@@ -48,6 +49,37 @@ public class FleetMenuScript : MonoBehaviour
             {
                 fleetMenu.SetActive(false);
                 SetFirstSelecetedButton();
+            }
+        }
+    }
+
+    //FleetMenu actionMap
+    public void OnShipLeft(CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            //Shift to the left ship
+            ShipButton currentButton = eventSystem.currentSelectedGameObject.GetComponent<ShipButton>();
+            int shipNr = currentButton.ShipButtonNr;
+
+            if(shipNr < OverworldData.FleetSize)
+            {
+                eventSystem.SetSelectedGameObject(shipButtons[shipNr + 1]);
+            }
+        }
+    }
+
+    public void OnShipRight(CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            //Shift to the right ship
+            ShipButton currentButton = eventSystem.currentSelectedGameObject.GetComponent<ShipButton>();
+            int shipNr = currentButton.ShipButtonNr;
+
+            if (shipNr > 0)
+            {
+                eventSystem.SetSelectedGameObject(shipButtons[shipNr - 1]);
             }
         }
     }
@@ -87,9 +119,7 @@ public class FleetMenuScript : MonoBehaviour
             }
 
             Navigation buttonNavigation = button.navigation;
-            buttonNavigation.mode = Navigation.Mode.Horizontal;
-            //Debug.Log("buttonNavigation: " + buttonNavigation + ", mode: " + buttonNavigation.mode);
-
+            buttonNavigation.mode = Navigation.Mode.None;
             AddOnClickListener(buttonObj, button, i, player);
 
             if (i == 0)
@@ -97,7 +127,8 @@ public class FleetMenuScript : MonoBehaviour
                 firstSelectedButton = buttonObj;
                 SetFirstSelecetedButton();
             }
-            buttons.Add(button);
+
+            shipButtons[i] = buttonObj;
         }
     }
 
@@ -117,13 +148,13 @@ public class FleetMenuScript : MonoBehaviour
     {
         buttonObj.AddComponent<ShipButton>();
         ShipButton shipButton = buttonObj.GetComponent<ShipButton>();
-        shipButton.ShipNr = shipNr;
+        shipButton.ShipButtonNr = shipNr;
         Fleet fleet = player.GetComponent<PlayerScript>().GetFleet();
-        button.onClick.AddListener(() => fleet.ActivateShip(shipButton.ShipNr, player));
+        button.onClick.AddListener(() => fleet.ActivateShip(shipButton.ShipButtonNr, player));
     }
 
     public void SetFirstSelecetedButton()
     {
-        eventSystem.SetSelectedGameObject(firstSelectedButton);
+        eventSystem.firstSelectedGameObject = firstSelectedButton;
     }
 }

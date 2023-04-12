@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
+    //Debugging ↓
+    public string vehicleBehavior;
+    public string activeDimension;
+    public string activeCell;
+    public string activeShip;
+    //Debugging ↑
+
+
     public PlayerData playerData;
     public string ShipName;
     public GameObject dimensionPrefab, cellPrefab, shipPrefab;
@@ -44,6 +52,18 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        //Debugging ↓
+        vehicleBehavior = playerData.VehicleBehavior.name;
+        activeDimension = "Dimension "+playerData.ActiveDimension.DimensionNr.ToString();
+        activeCell = "Cell "+playerData.ActiveCell.X.ToString()+", "+playerData.ActiveCell.Y.ToString();
+
+        if (playerData.ActiveShip)
+        {
+            activeShip = playerData.ActiveShip.name;
+        }
+        //Debugging ↑
+
+
         if(playerData.ActiveShip == null)
         {
             ShipName = "no ship";
