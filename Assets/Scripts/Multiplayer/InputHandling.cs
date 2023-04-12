@@ -13,7 +13,8 @@ public class InputHandling : MonoBehaviour
     private PlayerInput playerInput;
     private InputActionMap gameStartMap;
     private InputActionMap playerMap;
-    private InputActionMap FleetMenuMap;
+    private InputActionMap fleetMenuMap;
+    private MultiplayerEventSystem eventSystem;
 
     private void Start()
     {
@@ -21,15 +22,18 @@ public class InputHandling : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         gameStartMap = playerInput.actions.FindActionMap("GameStart");
         playerMap = playerInput.actions.FindActionMap("Player");
-        FleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
+        fleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
+        
 
         if (name == "Player1")
         {
             opponent = GameObject.Find("Player2").GetComponent<PlayerScript>();
+            eventSystem = GameObject.Find("EventSystem1").GetComponent<MultiplayerEventSystem>();
         }
         else
         {
             opponent = GameObject.Find("Player1").GetComponent<PlayerScript>();
+            eventSystem = GameObject.Find("EventSystem2").GetComponent<MultiplayerEventSystem>();
         }
 
         playerInput.SwitchCurrentActionMap("FleetMenu");
@@ -248,18 +252,18 @@ public class InputHandling : MonoBehaviour
         yield return new WaitForSecondsRealtime(sec);
     }
 
-    //FleetMenu actionMap
-    //public void OnSubmit()
-    //{
+    ////FleetMenu actionMap
+    ////public void OnSubmit()
+    ////{
 
-    //}
+    ////}
 
     //public void OnShipLeft(CallbackContext ctx)
     //{
     //    if (ctx.performed)
     //    {
     //        //Shift to the left ship
-    //        Debug.Log("Ship left selected!");
+    //        eventSystem.SetSelectedGameObject();
     //    }
     //}
 
@@ -285,9 +289,9 @@ public class InputHandling : MonoBehaviour
                 {
                     playerMap.Disable();
                 }
-                if (FleetMenuMap.enabled)
+                if (fleetMenuMap.enabled)
                 {
-                    FleetMenuMap.Disable();
+                    fleetMenuMap.Disable();
                 }
                 break;
             case "Player":
@@ -299,9 +303,9 @@ public class InputHandling : MonoBehaviour
                 {
                     playerMap.Enable();
                 }
-                if (FleetMenuMap.enabled)
+                if (fleetMenuMap.enabled)
                 {
-                    FleetMenuMap.Disable();
+                    fleetMenuMap.Disable();
                 }
                 break;
             case "FleetMenu":
@@ -313,9 +317,9 @@ public class InputHandling : MonoBehaviour
                 {
                     playerMap.Disable();
                 }
-                if (!FleetMenuMap.enabled)
+                if (!fleetMenuMap.enabled)
                 {
-                    FleetMenuMap.Enable();
+                    fleetMenuMap.Enable();
                 }
                 break;
             default:

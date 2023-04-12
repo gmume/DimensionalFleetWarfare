@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ShipButton : MonoBehaviour
 {
-    public int ShipNr {get; set;}
+    public int ShipButtonNr {get; set;}
 }
