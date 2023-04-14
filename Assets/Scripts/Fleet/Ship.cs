@@ -55,7 +55,7 @@ public class Ship : MonoBehaviour
         }
         else
         {
-            print("Don't let your ship run aground!");
+            print("Don't let your ship run aground, capt'n!");
         }
     }
 

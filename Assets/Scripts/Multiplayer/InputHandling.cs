@@ -158,6 +158,8 @@ public class InputHandling : MonoBehaviour
 
             playerInput.SwitchCurrentActionMap("Player");
             SwitchActionMap("Player");
+
+            GameObject.Find("MultiDisplay").GetComponent<MultiDisplay>().UpdateCameras();
         }
     }
 
