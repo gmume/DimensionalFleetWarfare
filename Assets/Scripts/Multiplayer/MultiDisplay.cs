@@ -6,7 +6,7 @@ public class MultiDisplay : MonoBehaviour
 
     public void Start()
     {
-        Debug.LogError("Force the build console open...");
+        //Debug.LogError("Force the build console open...");
 
         camera1A = GameObject.Find("Camera1A").GetComponent<Camera>();
         camera1B = GameObject.Find("Camera1B").GetComponent<Camera>();
