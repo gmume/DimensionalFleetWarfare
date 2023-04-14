@@ -6,15 +6,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.InputSystem.Users;
 
 public class InputHandling : MonoBehaviour
 {
     private PlayerScript playerScript, opponent;
     private PlayerInput playerInput;
-    private InputActionMap gameStartMap;
-    private InputActionMap playerMap;
-    private InputActionMap fleetMenuMap;
-    private MultiplayerEventSystem eventSystem;
+    private InputActionMap gameStartMap, playerMap, fleetMenuMap;
 
     private void Start()
     {
@@ -23,17 +22,34 @@ public class InputHandling : MonoBehaviour
         gameStartMap = playerInput.actions.FindActionMap("GameStart");
         playerMap = playerInput.actions.FindActionMap("Player");
         fleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
-        
 
-        if (name == "Player1")
+        ArrayList devices = new();
+
+        foreach (var device in InputSystem.devices)
         {
-            opponent = GameObject.Find("Player2").GetComponent<PlayerScript>();
-            eventSystem = GameObject.Find("EventSystem1").GetComponent<MultiplayerEventSystem>();
+            if (device.ToString().Contains("Gamepad")){
+                devices.Add(device);
+            }
+        }
+
+        if(devices.Count >= 2)
+        {
+            playerInput.user.UnpairDevices();
+
+            if (name == "Player1")
+            {
+                InputUser.PerformPairingWithDevice((InputDevice)devices[0], playerInput.user);
+                opponent = GameObject.Find("Player2").GetComponent<PlayerScript>();
+            }
+            else
+            {
+                InputUser.PerformPairingWithDevice((InputDevice)devices[1], playerInput.user);
+                opponent = GameObject.Find("Player1").GetComponent<PlayerScript>();
+            }
         }
         else
         {
-            opponent = GameObject.Find("Player1").GetComponent<PlayerScript>();
-            eventSystem = GameObject.Find("EventSystem2").GetComponent<MultiplayerEventSystem>();
+            Debug.Log("Gamepad missing!");
         }
 
         playerInput.SwitchCurrentActionMap("FleetMenu");
@@ -251,30 +267,6 @@ public class InputHandling : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(sec);
     }
-
-    ////FleetMenu actionMap
-    ////public void OnSubmit()
-    ////{
-
-    ////}
-
-    //public void OnShipLeft(CallbackContext ctx)
-    //{
-    //    if (ctx.performed)
-    //    {
-    //        //Shift to the left ship
-    //        eventSystem.SetSelectedGameObject();
-    //    }
-    //}
-
-    //public void OnShipRight(CallbackContext ctx)
-    //{
-    //    if (ctx.performed)
-    //    {
-    //        //Shift to the right ship
-    //        Debug.Log("Ship right selected!");
-    //    }
-    //}
 
     public void SwitchActionMap(string actionMapName)
     {
