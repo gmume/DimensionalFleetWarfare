@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public enum GamePhaces { Start, Play, End }
+public enum GamePhaces { Armored, Attacked, End }

@@ -14,7 +14,6 @@ public class Overworld : MonoBehaviour
 
     private void Awake()
     {
-        OverworldData.GamePhace = GamePhaces.Start;
         OverworldData.DimensionsCount = dimensionsCount;
         OverworldData.DimensionSize = (int)dimensionSize;
         OverworldData.DimensionDiagonal = dimensionSize * Mathf.Sqrt(2);

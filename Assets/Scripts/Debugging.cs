@@ -11,6 +11,8 @@ public class Debugging : MonoBehaviour
     private GameObject playerObj2;
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
+    private Camera camera1;
+    private Camera camera2;
 
     public bool inputEnabled1;
     public bool inputEnabled2;
@@ -26,6 +28,8 @@ public class Debugging : MonoBehaviour
     public GameObject currentSelectedButton2;
     public InputSystemUIInputModule UIInputModulePlayer1;
     public InputSystemUIInputModule UIInputModulePlayer2;
+    public LayerMask layerMask1;
+    public LayerMask layerMask2;
 
     void Start()
     {
@@ -33,6 +37,8 @@ public class Debugging : MonoBehaviour
         playerObj2 = GameObject.Find("Player2");
         playerInput1 = playerObj1.GetComponent<PlayerInput>();
         playerInput2 = playerObj2.GetComponent<PlayerInput>();
+        camera1 = GameObject.Find("Camera1").GetComponent<Camera>();
+        camera2 = GameObject.Find("Camera2").GetComponent<Camera>();
 
         eventSystem1 = GameObject.Find("EventSystem1").GetComponent<MultiplayerEventSystem>();
         eventSystem2 = GameObject.Find("EventSystem2").GetComponent<MultiplayerEventSystem>();
@@ -53,6 +59,9 @@ public class Debugging : MonoBehaviour
         {
             gamepadPlayer2 = playerInput2.user.pairedDevices.ToString();
         }
+
+        layerMask1 = camera1.cullingMask;
+        layerMask2 = camera2.cullingMask;
 
         controlScemePlayer1 = playerInput1.currentControlScheme;
         controlScemePlayer2 = playerInput2.currentControlScheme;

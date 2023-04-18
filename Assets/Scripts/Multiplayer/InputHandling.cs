@@ -143,10 +143,20 @@ public class InputHandling : MonoBehaviour
             if (name == "Player1")
             {
                 OverworldData.Player1SubmittedFleet = true;
+                GameObject camObj = GameObject.Find("Camera1");
+                Debug.Log("camObj: " + camObj);
+                CameraBehavior behavior = camObj.GetComponent<CameraBehavior>();
+                Debug.Log("behavior: " + behavior);
+                behavior.UpdateCamera(GamePhaces.Armored);
             }
             else
             {
                 OverworldData.Player2SubmittedFleet = true;
+                GameObject camObj = GameObject.Find("Camera2");
+                Debug.Log("camObj: " + camObj);
+                CameraBehavior behavior = camObj.GetComponent<CameraBehavior>();
+                Debug.Log("behavior: " + behavior);
+                behavior.UpdateCamera(GamePhaces.Attacked);
             }
 
             if (!OverworldData.Player1SubmittedFleet || !OverworldData.Player2SubmittedFleet)
@@ -158,8 +168,6 @@ public class InputHandling : MonoBehaviour
 
             playerInput.SwitchCurrentActionMap("Player");
             SwitchActionMap("Player");
-
-            GameObject.Find("MultiDisplay").GetComponent<MultiDisplay>().UpdateCameras();
         }
     }
 
@@ -255,8 +263,15 @@ public class InputHandling : MonoBehaviour
                     OverworldData.PlayerTurn = 1;
                 }
                 WaitForEndOfFrame(3);
-                playerScript.ChangeCameraVehicle();
-                opponent.ChangeCameraVehicle();
+
+                if(name == "Player1")
+                {
+                    GameObject.Find("Camera1").GetComponent<CameraBehavior>().UpdateCamera(GamePhaces.Attacked);
+                }
+                else
+                {
+                    GameObject.Find("Camera2").GetComponent<CameraBehavior>().UpdateCamera(GamePhaces.Attacked);
+                }
             }
             else
             {
