@@ -137,9 +137,6 @@ public class InputHandling : MonoBehaviour
     {
         if (ctx.performed)
         {
-            //To do: Popup "Are you sure?"
-
-
             if (playerScript.playerData.ActiveShip != null)
             {
                 playerScript.playerData.ActiveShip.Deactivate(playerScript);
@@ -148,20 +145,15 @@ public class InputHandling : MonoBehaviour
             if (name == "Player1")
             {
                 OverworldData.Player1SubmittedFleet = true;
-                CameraBehavior behavior = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
-                behavior.UpdateCamera(GamePhaces.Armed);
             }
             else
             {
                 OverworldData.Player2SubmittedFleet = true;
-                CameraBehavior behavior = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
-                behavior.UpdateCamera(GamePhaces.Attacked);
             }
 
             if (!OverworldData.Player1SubmittedFleet || !OverworldData.Player2SubmittedFleet)
             {
                 Debug.Log("Please, wait until your opponent is ready.");
-                //playerInput.DeactivateInput();
                 playerInput.enabled = false;
                 StartCoroutine(WaitForOpponent());
             }
@@ -172,9 +164,21 @@ public class InputHandling : MonoBehaviour
     {
         yield return new WaitUntil(() => (OverworldData.Player1SubmittedFleet && OverworldData.Player2SubmittedFleet));
         Debug.Log("Your opponent is ready. Let's go!");
-        //playerInput.ActivateInput();
+
+        if (name == "Player1")
+        {
+            CameraBehavior behavior = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
+            behavior.UpdateCamera(GamePhaces.Armed);
+        }
+        else
+        {
+            CameraBehavior behavior = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
+            behavior.UpdateCamera(GamePhaces.Attacked);
+        }
+
         playerInput.enabled = true;
         playerInput.SwitchCurrentActionMap("Player");
+        opponentInput.SwitchCurrentActionMap("Player");
         SwitchActionMap("Player");
     }
 
@@ -262,16 +266,16 @@ public class InputHandling : MonoBehaviour
                 playerScript.playerData.ActiveCell.Hitted = true;
                 Pause(3);
 
-                if (name == "Player1")
-                {
-                    cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
-                    cameraBehavior2.UpdateCamera(GamePhaces.Armed);
-                }
-                else
-                {
-                    cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
-                    cameraBehavior1.UpdateCamera(GamePhaces.Armed);
-                }
+                //if (name == "Player1")
+                //{
+                //    cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
+                //    cameraBehavior2.UpdateCamera(GamePhaces.Armed);
+                //}
+                //else
+                //{
+                //    cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
+                //    cameraBehavior1.UpdateCamera(GamePhaces.Armed);
+                //}
             }
             else
             {
@@ -282,6 +286,7 @@ public class InputHandling : MonoBehaviour
 
     public void Pause(float pauseTime)
     {
+        Debug.Log("entred Pause");
         playerInput.enabled = false;
         opponentInput.enabled = false;
         float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
@@ -291,6 +296,18 @@ public class InputHandling : MonoBehaviour
             //paused
         }
         Time.timeScale = 1f;
+
+        if (name == "Player1")
+        {
+            cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
+            cameraBehavior2.UpdateCamera(GamePhaces.Armed);
+        }
+        else
+        {
+            cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
+            cameraBehavior1.UpdateCamera(GamePhaces.Armed);
+        }
+
         playerInput.enabled = true;
         opponentInput.enabled = true;
     }

@@ -19,7 +19,6 @@ public class CameraBehavior : MonoBehaviour
         {
             armed = GameObject.Find("Armed2");
         }
-        Debug.Log("armed: " + armed+", activeSelf: "+armed.activeSelf);
         armed.SetActive(false);
     }
 
