@@ -9,11 +9,11 @@ public static class Layer
     {
         if (playerScript.name == "Player1")
         {
-            return 6;
+            return 7;
         }
         else
         {
-            return 7;
+            return 6;
         }
     }
 

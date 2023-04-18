@@ -143,19 +143,13 @@ public class InputHandling : MonoBehaviour
             if (name == "Player1")
             {
                 OverworldData.Player1SubmittedFleet = true;
-                GameObject camObj = GameObject.Find("Camera1");
-                Debug.Log("camObj: " + camObj);
-                CameraBehavior behavior = camObj.GetComponent<CameraBehavior>();
-                Debug.Log("behavior: " + behavior);
+                CameraBehavior behavior = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
                 behavior.UpdateCamera(GamePhaces.Armored);
             }
             else
             {
                 OverworldData.Player2SubmittedFleet = true;
-                GameObject camObj = GameObject.Find("Camera2");
-                Debug.Log("camObj: " + camObj);
-                CameraBehavior behavior = camObj.GetComponent<CameraBehavior>();
-                Debug.Log("behavior: " + behavior);
+                CameraBehavior behavior = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
                 behavior.UpdateCamera(GamePhaces.Attacked);
             }
 
@@ -202,7 +196,6 @@ public class InputHandling : MonoBehaviour
         {
             if (name == "Player1" && OverworldData.PlayerTurn == 1 || name == "Player2" && OverworldData.PlayerTurn == 2)
             {
-                //Debug.Log("Selection moved!");
                 //Change activeted cell
                 Vector2 vector = ctx.ReadValue<Vector2>();
                 float x = vector.x;
