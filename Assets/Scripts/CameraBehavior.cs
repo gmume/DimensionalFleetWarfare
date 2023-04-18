@@ -38,7 +38,14 @@ public class CameraBehavior : MonoBehaviour
                 break;
 
             case GamePhaces.End:
-                Debug.Log("Unhandled, yet!");
+                if (name == "Camera1")
+                {
+                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player1", "Fleet1", "VisibleShips", "FleetMenu1");
+                }
+                else
+                {
+                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player2", "Fleet2", "VisibleShips", "FleetMenu2");
+                }
                 break;
             default:
                 Debug.Log("No game phace found!");
