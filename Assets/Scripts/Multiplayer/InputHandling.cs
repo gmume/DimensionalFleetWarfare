@@ -12,8 +12,9 @@ using UnityEngine.InputSystem.Users;
 public class InputHandling : MonoBehaviour
 {
     private PlayerScript playerScript, opponent;
-    private PlayerInput playerInput;
+    private PlayerInput playerInput, opponentInput;
     private InputActionMap gameStartMap, playerMap, fleetMenuMap;
+    private CameraBehavior cameraBehavior1, cameraBehavior2;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class InputHandling : MonoBehaviour
         gameStartMap = playerInput.actions.FindActionMap("GameStart");
         playerMap = playerInput.actions.FindActionMap("Player");
         fleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
+        cameraBehavior1 = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
+        cameraBehavior2 = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
 
         ArrayList devices = new();
 
@@ -46,6 +49,8 @@ public class InputHandling : MonoBehaviour
                 InputUser.PerformPairingWithDevice((InputDevice)devices[1], playerInput.user);
                 opponent = GameObject.Find("Player1").GetComponent<PlayerScript>();
             }
+
+            opponentInput = opponent.GetComponent<PlayerInput>();
         }
         else
         {
@@ -144,7 +149,7 @@ public class InputHandling : MonoBehaviour
             {
                 OverworldData.Player1SubmittedFleet = true;
                 CameraBehavior behavior = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
-                behavior.UpdateCamera(GamePhaces.Armored);
+                behavior.UpdateCamera(GamePhaces.Armed);
             }
             else
             {
@@ -156,12 +161,10 @@ public class InputHandling : MonoBehaviour
             if (!OverworldData.Player1SubmittedFleet || !OverworldData.Player2SubmittedFleet)
             {
                 Debug.Log("Please, wait until your opponent is ready.");
-                playerInput.DeactivateInput();
+                //playerInput.DeactivateInput();
+                playerInput.enabled = false;
                 StartCoroutine(WaitForOpponent());
             }
-
-            playerInput.SwitchCurrentActionMap("Player");
-            SwitchActionMap("Player");
         }
     }
 
@@ -169,7 +172,10 @@ public class InputHandling : MonoBehaviour
     {
         yield return new WaitUntil(() => (OverworldData.Player1SubmittedFleet && OverworldData.Player2SubmittedFleet));
         Debug.Log("Your opponent is ready. Let's go!");
-        playerInput.ActivateInput();
+        //playerInput.ActivateInput();
+        playerInput.enabled = true;
+        playerInput.SwitchCurrentActionMap("Player");
+        SwitchActionMap("Player");
     }
 
     //Player actionMap
@@ -240,10 +246,7 @@ public class InputHandling : MonoBehaviour
             if (name == "Player1" && OverworldData.PlayerTurn == 1 || name == "Player2" && OverworldData.PlayerTurn == 2)
             {
                 //Fire on selected cell
-                //Debug.Log("Fired!");
                 Material cellMaterial = playerScript.playerData.ActiveCell.GetComponent<Renderer>().material;
-
-                playerScript.playerData.ActiveCell.Hitted = true;
 
                 if (name == "Player1")
                 {
@@ -255,15 +258,19 @@ public class InputHandling : MonoBehaviour
                     cellMaterial.color = Color.yellow;
                     OverworldData.PlayerTurn = 1;
                 }
-                WaitForEndOfFrame(3);
 
-                if(name == "Player1")
+                playerScript.playerData.ActiveCell.Hitted = true;
+                Pause(3);
+
+                if (name == "Player1")
                 {
-                    GameObject.Find("Camera1").GetComponent<CameraBehavior>().UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior2.UpdateCamera(GamePhaces.Armed);
                 }
                 else
                 {
-                    GameObject.Find("Camera2").GetComponent<CameraBehavior>().UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior1.UpdateCamera(GamePhaces.Armed);
                 }
             }
             else
@@ -273,9 +280,34 @@ public class InputHandling : MonoBehaviour
         }
     }
 
-    private IEnumerable<WaitForSecondsRealtime> WaitForEndOfFrame(int sec)
+    public void Pause(float pauseTime)
     {
-        yield return new WaitForSecondsRealtime(sec);
+        playerInput.enabled = false;
+        opponentInput.enabled = false;
+        float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
+        Time.timeScale = 0f;
+        while (Time.realtimeSinceStartup < pauseEndTime)
+        {
+            //paused
+        }
+        Time.timeScale = 1f;
+        playerInput.enabled = true;
+        opponentInput.enabled = true;
+    }
+
+    public IEnumerator PauseGame(float pauseTime)
+    {
+        Debug.Log("Inside PauseGame()");
+        Time.timeScale = 0f;
+        float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
+        Debug.Log("pauseEndTime: " + pauseEndTime);
+        while (Time.realtimeSinceStartup < pauseEndTime)
+        {
+            Debug.Log(Time.realtimeSinceStartup);
+            yield return 0;
+        }
+        Time.timeScale = 1f;
+        Debug.Log("Done with my pause");
     }
 
     public void SwitchActionMap(string actionMapName)

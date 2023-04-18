@@ -58,6 +58,7 @@ public class FleetMenuScript : MonoBehaviour
     {
         if (ctx.performed)
         {
+            Debug.Log("entred OnSubmit in FleetMenuScript");
             GameObject player;
             if (name == "FleetMenu1")
             {
@@ -74,38 +75,31 @@ public class FleetMenuScript : MonoBehaviour
 
     private void CreateShipButtons()
     {
-        GameObject player = null;
+        GameObject buttonObj;
+        Button button;
+        Transform parentsTransform;
+
         for (int i = 0; i < OverworldData.FleetSize; i++)
         {
-            GameObject buttonObj = TMP_DefaultControls.CreateButton(new TMP_DefaultControls.Resources());
-            Button button = buttonObj.GetComponent<Button>();
-            button.transform.SetParent(transform, false);
+            buttonObj = TMP_DefaultControls.CreateButton(new TMP_DefaultControls.Resources());
+            button = buttonObj.GetComponent<Button>();
 
             if (name == "FleetMenu1")
             {
                 buttonObj.name = "Ship1." + (i + 1).ToString();
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
-                button.colors = ChangeButtonColors(button.colors);
                 buttonObj.layer = 11;
-
-                if(player == null || player.name != "Player1")
-                {
-                    player = GameObject.Find("Player1");
-                }
+                parentsTransform = GameObject.Find("ShipButtons1").GetComponent<Transform>();
             }
             else
             {
                 buttonObj.name = "Ship2." + (i + 1).ToString();
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
-                button.colors = ChangeButtonColors(button.colors);
                 buttonObj.layer = 12;
-
-                if (player == null || player.name != "Player2")
-                {
-                    player = GameObject.Find("Player2");
-                }
+                parentsTransform = GameObject.Find("ShipButtons2").GetComponent<Transform>();
             }
 
+            buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
+            button.colors = ChangeButtonColors(button.colors);
+            button.transform.SetParent(parentsTransform, false);
             Navigation buttonNavigation = button.navigation;
             buttonNavigation.mode = Navigation.Mode.None;
             buttonObj.AddComponent<ShipButton>();

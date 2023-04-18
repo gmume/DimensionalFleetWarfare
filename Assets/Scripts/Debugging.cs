@@ -48,8 +48,11 @@ public class Debugging : MonoBehaviour
 
     void Update()
     {
-        actionMapPlayer1 = playerInput1.currentActionMap.name.ToString();
-        actionMapPlayer2 = playerInput2.currentActionMap.name.ToString();
+        if(playerInput1.enabled && playerInput2.enabled)
+        {
+            actionMapPlayer1 = playerInput1.currentActionMap.name.ToString();
+            actionMapPlayer2 = playerInput2.currentActionMap.name.ToString();
+        }
 
         if (playerInput1.devices.Count >= 1)
         {

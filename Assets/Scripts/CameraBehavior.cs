@@ -5,24 +5,41 @@ using UnityEngine;
 public class CameraBehavior : MonoBehaviour
 {
     new Camera camera;
+    GameObject armed;
 
     private void Start()
     {
         camera = GetComponent<Camera>();
+
+        if(name == "Camera1")
+        {
+            armed = GameObject.Find("Armed1");
+        }
+        else
+        {
+            armed = GameObject.Find("Armed2");
+        }
+        Debug.Log("armed: " + armed+", activeSelf: "+armed.activeSelf);
+        armed.SetActive(false);
     }
 
     public void UpdateCamera(GamePhaces phace)
     {
         switch (phace)
         {
-            case GamePhaces.Armored:
+            case GamePhaces.Armed:
                 if(name == "Camera1")
                 {
-                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player2", "VisibleShips", "FleetMenu1");
+                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player2", "VisibleShips", "FleetMenu1", "Armed");
                 }
                 else
                 {
-                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player1", "VisibleShips", "FleetMenu2");
+                    camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player1", "VisibleShips", "FleetMenu2", "Armed");
+                }
+
+                if (!armed.activeSelf)
+                {
+                    armed.SetActive(true);
                 }
                 break;
 
@@ -35,6 +52,11 @@ public class CameraBehavior : MonoBehaviour
                 {
                     camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player2", "Fleet2", "FleetMenu2");
                 }
+
+                if (armed.activeSelf)
+                {
+                    armed.SetActive(false);
+                }
                 break;
 
             case GamePhaces.End:
@@ -45,6 +67,10 @@ public class CameraBehavior : MonoBehaviour
                 else
                 {
                     camera.cullingMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Player2", "Fleet2", "VisibleShips", "FleetMenu2");
+                }
+                if (armed.activeSelf)
+                {
+                    armed.SetActive(false);
                 }
                 break;
             default:
