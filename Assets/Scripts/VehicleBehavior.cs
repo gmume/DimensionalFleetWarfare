@@ -48,32 +48,4 @@ public class VehicleBehavior : MonoBehaviour
             transform.position -= vector;
         }
     }
-
-    public void UpdateVehicle()
-    {
-        int difference = playerData.VehicleBehavior.CurrentDimension - CurrentDimension;
-
-        if (difference == 0)
-        {
-            return;
-        }
-        else
-        {
-            for (int i = 0; i < difference; i++)
-            {
-                if (difference > 0)
-                {
-                    CurrentDimension += 1;
-                    playerScript.SetNewDimension(CurrentDimension);
-                    transform.position += vector;
-                }
-                else
-                {
-                    CurrentDimension -= 1;
-                    playerScript.SetNewDimension(CurrentDimension);
-                    transform.position -= vector;
-                }
-            }
-        }
-    }
 }

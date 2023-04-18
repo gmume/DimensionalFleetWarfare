@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     //Debugging ↓
-    public string vehicleBehavior;
+    //public string vehicleBehavior;
     public string activeDimension;
     public string activeCell;
     public string activeShip;
@@ -18,8 +18,8 @@ public class PlayerScript : MonoBehaviour
     public string ShipName;
     public GameObject dimensionPrefab, cellPrefab, shipPrefab;
 
-    private GameObject cameraVehicleA, cameraVehicleB;
-    private VehicleBehavior vehicleBehaviorA, vehicleBehaviorB;
+    private GameObject cameraVehicle;
+    private VehicleBehavior vehicleBehavior;
     private Dimensions dimensions;
     private int currentX = 0, currentY = 0;
 
@@ -32,28 +32,24 @@ public class PlayerScript : MonoBehaviour
 
         if (name == "Player1")
         {
-            cameraVehicleA = GameObject.Find("CameraVehicle1A");
-            cameraVehicleB = GameObject.Find("CameraVehicle1B");
-            vehicleBehaviorA = cameraVehicleA.GetComponent<VehicleBehavior>();
-            vehicleBehaviorB = cameraVehicleB.GetComponent<VehicleBehavior>();
+            cameraVehicle = GameObject.Find("CameraVehicle1");
+            vehicleBehavior = cameraVehicle.GetComponent<VehicleBehavior>();
 
-            playerData.VehicleBehavior = vehicleBehaviorA;
+            playerData.VehicleBehavior = vehicleBehavior;
         }
         else
         {
-            cameraVehicleA = GameObject.Find("CameraVehicle2A");
-            cameraVehicleB = GameObject.Find("CameraVehicle2B");
-            vehicleBehaviorA = cameraVehicleA.GetComponent<VehicleBehavior>();
-            vehicleBehaviorB = cameraVehicleB.GetComponent<VehicleBehavior>();
+            cameraVehicle = GameObject.Find("CameraVehicle2");
+            vehicleBehavior = cameraVehicle.GetComponent<VehicleBehavior>();
 
-            playerData.VehicleBehavior = vehicleBehaviorB;
+            playerData.VehicleBehavior = vehicleBehavior;
         }
     }
 
     private void Update()
     {
         //Debugging ↓
-        vehicleBehavior = playerData.VehicleBehavior.name;
+        //vehicleBehavior = playerData.VehicleBehavior.name;
         activeDimension = "Dimension "+playerData.ActiveDimension.DimensionNr.ToString();
         activeCell = "Cell "+playerData.ActiveCell.X.ToString()+", "+playerData.ActiveCell.Y.ToString();
 
@@ -71,20 +67,6 @@ public class PlayerScript : MonoBehaviour
         else
         {
             ShipName = playerData.ActiveShip.ShipName;
-        }
-    }
-
-    public void ChangeCameraVehicle()
-    {
-        if (playerData.VehicleBehavior == vehicleBehaviorA)
-        {
-            vehicleBehaviorB.UpdateVehicle();
-            playerData.VehicleBehavior = vehicleBehaviorB;
-        }
-        else
-        {
-            vehicleBehaviorA.UpdateVehicle();
-            playerData.VehicleBehavior = vehicleBehaviorA;
         }
     }
 

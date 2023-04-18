@@ -108,7 +108,8 @@ public class FleetMenuScript : MonoBehaviour
 
             Navigation buttonNavigation = button.navigation;
             buttonNavigation.mode = Navigation.Mode.None;
-            AddOnClickListener(buttonObj, button, i, player);
+            buttonObj.AddComponent<ShipButton>();
+            buttonObj.GetComponent<ShipButton>().ShipButtonNr = i;
 
             if (i == 0)
             {
@@ -131,15 +132,6 @@ public class FleetMenuScript : MonoBehaviour
         newButtonColors.pressedColor = Color.green - subColor;
         newButtonColors.disabledColor = Color.gray - subColor;
         return newButtonColors;
-    }
-
-    private void AddOnClickListener(GameObject buttonObj,Button button, int shipNr, GameObject player)
-    {
-        buttonObj.AddComponent<ShipButton>();
-        ShipButton shipButton = buttonObj.GetComponent<ShipButton>();
-        shipButton.ShipButtonNr = shipNr;
-        //Fleet fleet = player.GetComponent<PlayerScript>().GetFleet();
-        //button.onClick.AddListener(() => fleet.ActivateShip(shipButton.ShipButtonNr, player));
     }
 
     public void SetFirstSelecetedButton()
