@@ -10,11 +10,12 @@ public class VehicleBehavior : MonoBehaviour
     private GameObject player;
     private PlayerScript playerScript;
     private PlayerData playerData;
+    private FleetMenuScript fleetMenuScript;
 
     public void Start()
     {
         transform.position += new Vector3(OverworldData.DimensionSize / 2, OverworldData.DimensionSize * 2 / 3, -OverworldData.DimensionSize);
-        vector = new Vector3(0, OverworldData.DimensionSize, 0);
+        vector = new Vector3(0, OverworldData.DimensionSize * 2, 0);
         CurrentDimension = 0;
 
         if (gameObject.name == "CameraVehicle1A")
@@ -25,8 +26,18 @@ public class VehicleBehavior : MonoBehaviour
         {
             player = GameObject.Find("Player2");
         }
+
         playerScript = player.GetComponent<PlayerScript>();
         playerData = playerScript.playerData;
+
+        if(name == "CameraVehicle1")
+        {
+            fleetMenuScript = GameObject.Find("FleetMenu1").GetComponent<FleetMenuScript>();
+        }
+        else
+        {
+            fleetMenuScript = GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>();
+        }
     }
 
     public void CameraVehicleUp(CallbackContext ctx)
@@ -36,6 +47,7 @@ public class VehicleBehavior : MonoBehaviour
             CurrentDimension += 1;
             playerScript.SetNewDimension(playerData.ActiveDimension.DimensionNr + 1);
             transform.position += vector;
+            fleetMenuScript.UpdateFleetMenuDimension(CurrentDimension);
         }
     }
 
@@ -46,6 +58,7 @@ public class VehicleBehavior : MonoBehaviour
             CurrentDimension -= 1;
             playerScript.SetNewDimension(playerData.ActiveDimension.DimensionNr - 1);
             transform.position -= vector;
+            fleetMenuScript.UpdateFleetMenuDimension(CurrentDimension);
         }
     }
 }

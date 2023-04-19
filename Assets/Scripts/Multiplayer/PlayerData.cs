@@ -10,4 +10,6 @@ public class PlayerData : ScriptableObject
     public Dimension ActiveDimension { get; set; }
     public Cell ActiveCell { get; set; }
     public Ship ActiveShip { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 }

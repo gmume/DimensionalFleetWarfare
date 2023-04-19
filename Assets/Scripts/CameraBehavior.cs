@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    new Camera camera;
-    GameObject armed;
+    private new Camera camera;
+    private GameObject armed;
 
     private void Start()
     {

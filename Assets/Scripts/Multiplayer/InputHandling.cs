@@ -15,6 +15,7 @@ public class InputHandling : MonoBehaviour
     private PlayerInput playerInput, opponentInput;
     private InputActionMap gameStartMap, playerMap, fleetMenuMap;
     private CameraBehavior cameraBehavior1, cameraBehavior2;
+    private FleetMenuScript fleetMenuScript;
 
     private void Start()
     {
@@ -25,6 +26,16 @@ public class InputHandling : MonoBehaviour
         fleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
         cameraBehavior1 = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
         cameraBehavior2 = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
+
+        if(name == "Player1")
+        {
+            fleetMenuScript = GameObject.Find("FleetMenu1").GetComponent<FleetMenuScript>();
+        }
+        else
+        {
+            fleetMenuScript = GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>();
+        }
+        
 
         ArrayList devices = new();
 
@@ -78,6 +89,8 @@ public class InputHandling : MonoBehaviour
             {
                 GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>().SetFirstSelecetedButton();
             }
+
+
         }
     }
 
@@ -112,6 +125,8 @@ public class InputHandling : MonoBehaviour
                     playerScript.playerData.ActiveShip.Move(0, -1);
                 }
             }
+
+            fleetMenuScript.UpdateFleetMenuCoords(playerScript.playerData.ActiveShip.X, playerScript.playerData.ActiveShip.Z);
         }
     }
 
@@ -137,6 +152,19 @@ public class InputHandling : MonoBehaviour
     {
         if (ctx.performed)
         {
+            MultiplayerEventSystem eventSystem;
+
+            if (name == "Player1")
+            {
+                eventSystem = GameObject.Find("EventSystem1").GetComponent<MultiplayerEventSystem>();
+            }
+            else
+            {
+                eventSystem = GameObject.Find("EventSystem2").GetComponent<MultiplayerEventSystem>();
+            }
+
+            eventSystem.SetSelectedGameObject(null);
+
             if (playerScript.playerData.ActiveShip != null)
             {
                 playerScript.playerData.ActiveShip.Deactivate(playerScript);
@@ -157,6 +185,8 @@ public class InputHandling : MonoBehaviour
                 playerInput.enabled = false;
                 StartCoroutine(WaitForOpponent());
             }
+
+            fleetMenuScript.UpdateFleetMenuCoords();
         }
     }
 

@@ -12,6 +12,15 @@ public class FleetMenuScript : MonoBehaviour
 {
     private GameObject[] shipButtons;
     private ShipButton currentButton;
+    private string x = "--";
+    private string y = "--";
+    private string dimensionNr = "01";
+    private TextMeshProUGUI xCoord;
+    private TextMeshProUGUI yCoord;
+    private TextMeshProUGUI dimension;
+    private GameObject playerObj;
+    private PlayerScript playerScript;
+    private Ship activeShip;
 
     public EventSystem eventSystem;
     public GameObject firstSelectedButton;
@@ -21,6 +30,37 @@ public class FleetMenuScript : MonoBehaviour
     {
         shipButtons = new GameObject[OverworldData.FleetSize];
         CreateShipButtons();
+
+        if(name == "FleetMenu1")
+        {
+            xCoord = GameObject.Find("X-Koordinate1").GetComponent<TextMeshProUGUI>();
+            yCoord = GameObject.Find("Y-Koordinate1").GetComponent<TextMeshProUGUI>();
+            dimension = GameObject.Find("Dimension1").GetComponent<TextMeshProUGUI>();
+        }
+        else
+        {
+            xCoord = GameObject.Find("X-Koordinate2").GetComponent<TextMeshProUGUI>();
+            yCoord = GameObject.Find("Y-Koordinate2").GetComponent<TextMeshProUGUI>();
+            dimension = GameObject.Find("Dimension2").GetComponent<TextMeshProUGUI>();
+        }
+
+        if(name == "FleetMenu1")
+        {
+            playerObj = GameObject.Find("Player1");
+            playerScript = playerObj.GetComponent<PlayerScript>();
+        }
+        else
+        {
+            playerObj = GameObject.Find("Player2");
+            playerScript = playerObj.GetComponent<PlayerScript>();
+        }
+    }
+
+    private void Update()
+    {
+        xCoord.text = x;
+        yCoord.text = y;
+        dimension.text = dimensionNr;
     }
 
     //FleetMenu actionMap
@@ -58,19 +98,43 @@ public class FleetMenuScript : MonoBehaviour
     {
         if (ctx.performed)
         {
-            Debug.Log("entred OnSubmit in FleetMenuScript");
-            GameObject player;
-            if (name == "FleetMenu1")
-            {
-                player = GameObject.Find("Player1");
-            }
-            else
-            {
-                player = GameObject.Find("Player2");
-            }
-            Fleet fleet = player.GetComponent<PlayerScript>().GetFleet();
-            fleet.ActivateShip(currentButton.ShipButtonNr, player);
+            Fleet fleet = playerScript.GetFleet();
+            fleet.ActivateShip(currentButton.ShipButtonNr, playerObj);
+
+            UpdateFleetMenuCoords(playerScript.playerData.ActiveShip.X, playerScript.playerData.ActiveShip.Z);
         }
+    }
+
+    public void UpdateFleetMenuCoords(int xCoord, int yCoord)
+    {
+        if(xCoord.ToString().Length < 2)
+        {
+            x = "0"+ xCoord.ToString();
+        }
+        else
+        {
+            x = xCoord.ToString();
+        }
+
+        if (yCoord.ToString().Length < 2)
+        {
+            y = "0" + yCoord.ToString();
+        }
+        else
+        {
+            y = yCoord.ToString();
+        }
+    }
+
+    public void UpdateFleetMenuCoords()
+    {
+            x = "--";
+            y = "--";
+    }
+
+    public void UpdateFleetMenuDimension(int dimension)
+    {
+        dimensionNr = "0" + (dimension + 1).ToString();
     }
 
     private void CreateShipButtons()
@@ -103,15 +167,15 @@ public class FleetMenuScript : MonoBehaviour
             button.colors = ChangeButtonColors(button.colors);
 
             button.image.type = Image.Type.Simple;
-            Sprite buttonSprite = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/80-Button") as Sprite;
+            Sprite buttonSprite = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Button") as Sprite;
             button.image.sprite = buttonSprite;
             button.image.SetNativeSize();
 
             button.transition = Selectable.Transition.SpriteSwap;
-            Sprite buttonHighlighted = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Selection") as Sprite;
+            Sprite buttonSelected = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Selection") as Sprite;
 
             SpriteState spriteState = new();
-            spriteState.highlightedSprite = buttonHighlighted;
+            spriteState.selectedSprite = buttonSelected;
             button.spriteState = spriteState;
 
             button.transform.SetParent(parentsTransform, false);
