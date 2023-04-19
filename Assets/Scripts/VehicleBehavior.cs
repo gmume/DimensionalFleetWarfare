@@ -40,7 +40,7 @@ public class VehicleBehavior : MonoBehaviour
         }
     }
 
-    public void CameraVehicleUp(CallbackContext ctx)
+    public void OnDimensionUp(CallbackContext ctx)
     {
         if (OverworldData.DimensionsCount - 1 > playerData.ActiveDimension.DimensionNr && ctx.performed == true)
         {
@@ -51,7 +51,7 @@ public class VehicleBehavior : MonoBehaviour
         }
     }
 
-    public void CameraVehicleDown(CallbackContext ctx)
+    public void OnDimensionDown(CallbackContext ctx)
     {
         if (playerData.ActiveDimension.DimensionNr > 0 && ctx.performed == true)
         {

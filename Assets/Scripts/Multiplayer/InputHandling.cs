@@ -15,7 +15,7 @@ public class InputHandling : MonoBehaviour
     private PlayerInput playerInput, opponentInput;
     private InputActionMap gameStartMap, playerMap, fleetMenuMap;
     private CameraBehavior cameraBehavior1, cameraBehavior2;
-    private FleetMenuScript fleetMenuScript;
+    private FleetMenuScript fleetMenuScript1, fleetMenuScript2;
 
     private void Start()
     {
@@ -26,16 +26,8 @@ public class InputHandling : MonoBehaviour
         fleetMenuMap = playerInput.actions.FindActionMap("FleetMenu");
         cameraBehavior1 = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
         cameraBehavior2 = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
-
-        if(name == "Player1")
-        {
-            fleetMenuScript = GameObject.Find("FleetMenu1").GetComponent<FleetMenuScript>();
-        }
-        else
-        {
-            fleetMenuScript = GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>();
-        }
-        
+        fleetMenuScript1 = GameObject.Find("FleetMenu1").GetComponent<FleetMenuScript>();
+        fleetMenuScript2 = GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>();
 
         ArrayList devices = new();
 
@@ -89,8 +81,6 @@ public class InputHandling : MonoBehaviour
             {
                 GameObject.Find("FleetMenu2").GetComponent<FleetMenuScript>().SetFirstSelecetedButton();
             }
-
-
         }
     }
 
@@ -126,7 +116,8 @@ public class InputHandling : MonoBehaviour
                 }
             }
 
-            fleetMenuScript.UpdateFleetMenuCoords(playerScript.playerData.ActiveShip.X, playerScript.playerData.ActiveShip.Z);
+            fleetMenuScript1.UpdateFleetMenuCoords(playerScript.playerData.ActiveShip.X, playerScript.playerData.ActiveShip.Z);
+            fleetMenuScript2.UpdateFleetMenuCoords(playerScript.playerData.ActiveShip.X, playerScript.playerData.ActiveShip.Z);
         }
     }
 
@@ -186,7 +177,8 @@ public class InputHandling : MonoBehaviour
                 StartCoroutine(WaitForOpponent());
             }
 
-            fleetMenuScript.UpdateFleetMenuCoords();
+            fleetMenuScript1.UpdateFleetMenuCoords();
+            fleetMenuScript2.UpdateFleetMenuCoords();
         }
     }
 
@@ -195,16 +187,10 @@ public class InputHandling : MonoBehaviour
         yield return new WaitUntil(() => (OverworldData.Player1SubmittedFleet && OverworldData.Player2SubmittedFleet));
         Debug.Log("Your opponent is ready. Let's go!");
 
-        if (name == "Player1")
-        {
-            CameraBehavior behavior = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
-            behavior.UpdateCamera(GamePhaces.Armed);
-        }
-        else
-        {
-            CameraBehavior behavior = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
-            behavior.UpdateCamera(GamePhaces.Attacked);
-        }
+        CameraBehavior behavior1 = GameObject.Find("Camera1").GetComponent<CameraBehavior>();
+        behavior1.UpdateCamera(GamePhaces.Armed);
+        CameraBehavior behavior2 = GameObject.Find("Camera2").GetComponent<CameraBehavior>();
+        behavior2.UpdateCamera(GamePhaces.Attacked);
 
         playerInput.enabled = true;
         playerInput.SwitchCurrentActionMap("Player");
@@ -265,6 +251,9 @@ public class InputHandling : MonoBehaviour
                         playerScript.SetNewCell(0, -1);
                     }
                 }
+
+                fleetMenuScript1.UpdateFleetMenuCoords(playerScript.playerData.ActiveCell.X, playerScript.playerData.ActiveCell.Y);
+                fleetMenuScript2.UpdateFleetMenuCoords(playerScript.playerData.ActiveCell.X, playerScript.playerData.ActiveCell.Y);
             }
             else
             {
@@ -295,17 +284,6 @@ public class InputHandling : MonoBehaviour
 
                 playerScript.playerData.ActiveCell.Hitted = true;
                 Pause(3);
-
-                //if (name == "Player1")
-                //{
-                //    cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
-                //    cameraBehavior2.UpdateCamera(GamePhaces.Armed);
-                //}
-                //else
-                //{
-                //    cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
-                //    cameraBehavior1.UpdateCamera(GamePhaces.Armed);
-                //}
             }
             else
             {
@@ -316,7 +294,6 @@ public class InputHandling : MonoBehaviour
 
     public void Pause(float pauseTime)
     {
-        Debug.Log("entred Pause");
         playerInput.enabled = false;
         opponentInput.enabled = false;
         float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
@@ -344,17 +321,13 @@ public class InputHandling : MonoBehaviour
 
     public IEnumerator PauseGame(float pauseTime)
     {
-        Debug.Log("Inside PauseGame()");
         Time.timeScale = 0f;
         float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
-        Debug.Log("pauseEndTime: " + pauseEndTime);
         while (Time.realtimeSinceStartup < pauseEndTime)
         {
-            Debug.Log(Time.realtimeSinceStartup);
             yield return 0;
         }
         Time.timeScale = 1f;
-        Debug.Log("Done with my pause");
     }
 
     public void SwitchActionMap(string actionMapName)
