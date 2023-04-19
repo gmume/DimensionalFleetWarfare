@@ -97,8 +97,23 @@ public class FleetMenuScript : MonoBehaviour
                 parentsTransform = GameObject.Find("ShipButtons2").GetComponent<Transform>();
             }
 
-            buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
+            //buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Ship" + (i + 1).ToString();
+
+            //button design
             button.colors = ChangeButtonColors(button.colors);
+
+            button.image.type = Image.Type.Simple;
+            //Sprite buttonSprite = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Button") as Sprite;
+            //button.image.sprite = buttonSprite;
+            //button.image.SetNativeSize();
+
+            button.transition = Selectable.Transition.SpriteSwap;
+            Sprite buttonHighlighted = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Selection") as Sprite;
+
+            SpriteState spriteState = new();
+            spriteState.highlightedSprite = buttonHighlighted;
+            button.spriteState = spriteState;
+
             button.transform.SetParent(parentsTransform, false);
             Navigation buttonNavigation = button.navigation;
             buttonNavigation.mode = Navigation.Mode.None;
@@ -119,11 +134,11 @@ public class FleetMenuScript : MonoBehaviour
     private ColorBlock ChangeButtonColors(ColorBlock buttonColors)
     {
         ColorBlock newButtonColors;
-        Color subColor = new(0.5f, 0.5f, 0.5f);
+        Color subColor = new(0f, 0.5f, 0.5f);
 
         newButtonColors = buttonColors;
-        newButtonColors.selectedColor = Color.green;
-        newButtonColors.pressedColor = Color.green - subColor;
+        newButtonColors.selectedColor = Color.cyan;
+        newButtonColors.pressedColor = Color.cyan - subColor;
         newButtonColors.disabledColor = Color.gray - subColor;
         return newButtonColors;
     }
