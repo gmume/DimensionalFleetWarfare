@@ -103,9 +103,9 @@ public class FleetMenuScript : MonoBehaviour
             button.colors = ChangeButtonColors(button.colors);
 
             button.image.type = Image.Type.Simple;
-            //Sprite buttonSprite = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Button") as Sprite;
-            //button.image.sprite = buttonSprite;
-            //button.image.SetNativeSize();
+            Sprite buttonSprite = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/80-Button") as Sprite;
+            button.image.sprite = buttonSprite;
+            button.image.SetNativeSize();
 
             button.transition = Selectable.Transition.SpriteSwap;
             Sprite buttonHighlighted = Resources.Load<Sprite>("HUD_Elemente/ButtonElements/Selection") as Sprite;
