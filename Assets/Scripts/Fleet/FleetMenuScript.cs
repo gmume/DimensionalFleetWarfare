@@ -20,6 +20,7 @@ public class FleetMenuScript : MonoBehaviour
     private TextMeshProUGUI dimension;
     private GameObject playerObj;
     private PlayerScript playerScript;
+    private GameObject dimensionsHeader;
     private GameObject[] dimensions;
     private int currenDimension;
 
@@ -37,48 +38,21 @@ public class FleetMenuScript : MonoBehaviour
             xCoord = GameObject.Find("X-Koordinate1").GetComponent<TextMeshProUGUI>();
             yCoord = GameObject.Find("Y-Koordinate1").GetComponent<TextMeshProUGUI>();
             dimension = GameObject.Find("Dimension1").GetComponent<TextMeshProUGUI>();
+            playerObj = GameObject.Find("Player1");
+            playerScript = playerObj.GetComponent<PlayerScript>();
+            dimensionsHeader = GameObject.Find("DimensionsHeader1");
         }
         else
         {
             xCoord = GameObject.Find("X-Koordinate2").GetComponent<TextMeshProUGUI>();
             yCoord = GameObject.Find("Y-Koordinate2").GetComponent<TextMeshProUGUI>();
             dimension = GameObject.Find("Dimension2").GetComponent<TextMeshProUGUI>();
-        }
-
-        if(name == "FleetMenu1")
-        {
-            playerObj = GameObject.Find("Player1");
-            playerScript = playerObj.GetComponent<PlayerScript>();
-        }
-        else
-        {
             playerObj = GameObject.Find("Player2");
             playerScript = playerObj.GetComponent<PlayerScript>();
-        }
-
-        GameObject dimensionsHeader;
-        if (name == "FleetMenu1")
-        {
             dimensionsHeader = GameObject.Find("DimensionsHeader2");
         }
-        else
-        {
-           dimensionsHeader = GameObject.Find("DimensionsHeader2");
-        }
 
-        dimensions = new GameObject[OverworldData.DimensionsCount];
-        Debug.Log("dimensionsHeader: " + dimensionsHeader + ", dimensions: "+dimensions.Length+ ", dimensionsHeader.transform.childCount: "+ dimensionsHeader.transform.childCount);
-
-        for (int i = 0; i < OverworldData.DimensionsCount; i++)
-        {
-            dimensions[i] = dimensionsHeader.transform.GetChild(i).gameObject;
-            Debug.Log("child: " + dimensions[i]);
-            if(i != 0)
-            {
-                dimensions[i].SetActive(false);
-            }
-        }
-
+        CreateHUDDimensions();
         currenDimension = 1;
     }
 
@@ -94,7 +68,6 @@ public class FleetMenuScript : MonoBehaviour
     {
         if (ctx.performed)
         {
-            //Shift to the left ship
             int shipNr = currentButton.ShipButtonNr;
 
             if (shipNr > 0)
@@ -109,7 +82,6 @@ public class FleetMenuScript : MonoBehaviour
     {
         if (ctx.performed)
         {
-            //Shift to the right ship
             int shipNr = currentButton.ShipButtonNr;
 
             if (shipNr < OverworldData.FleetSize)
@@ -216,13 +188,13 @@ public class FleetMenuScript : MonoBehaviour
 
         if (name == "FleetMenu1")
         {
-            buttonObj.name = "Ship1." + (i + 1).ToString();
+            buttonObj.name = "Ship1." + (i + 1);
             buttonObj.layer = 11;
             parentsTransform = GameObject.Find("ShipButtons1").GetComponent<Transform>();
         }
         else
         {
-            buttonObj.name = "Ship2." + (i + 1).ToString();
+            buttonObj.name = "Ship2." + (i + 1);
             buttonObj.layer = 12;
             parentsTransform = GameObject.Find("ShipButtons2").GetComponent<Transform>();
         }
@@ -277,6 +249,29 @@ public class FleetMenuScript : MonoBehaviour
         else
         {
             shipPart.layer = 12;
+        }
+    }
+
+    private void CreateHUDDimensions()
+    {
+        dimensions = new GameObject[OverworldData.DimensionsCount];
+
+        for (int i = 0; i < OverworldData.DimensionsCount; i++)
+        {
+            GameObject HUDDimension = new();
+            HUDDimension.name = "HUDDimension0" + (i + 1);
+            HUDDimension.transform.SetParent(dimensionsHeader.transform, false);
+            HUDDimension.AddComponent<CanvasRenderer>();
+            HUDDimension.AddComponent<Image>().sprite = Resources.Load<Sprite>("HUD_Elemente/Levels/Dimension0" + (i + 1)) as Sprite;
+            Image HUDDimensionImage = HUDDimension.GetComponent<Image>();
+            HUDDimension.GetComponent<Image>().type = Image.Type.Simple;
+            HUDDimensionImage.SetNativeSize();
+            dimensions[i] = HUDDimension;
+
+            if(i != 0)
+            {
+                HUDDimension.SetActive(false);
+            }
         }
     }
 }
