@@ -283,7 +283,18 @@ public class InputHandling : MonoBehaviour
                 }
 
                 playerScript.playerData.ActiveCell.Hitted = true;
-                Pause(3);
+                //Pause(3);
+
+                if (name == "Player1")
+                {
+                    cameraBehavior1.UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior2.UpdateCamera(GamePhaces.Armed);
+                }
+                else
+                {
+                    cameraBehavior2.UpdateCamera(GamePhaces.Attacked);
+                    cameraBehavior1.UpdateCamera(GamePhaces.Armed);
+                }
             }
             else
             {
